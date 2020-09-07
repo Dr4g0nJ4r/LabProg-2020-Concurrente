@@ -20,10 +20,11 @@ public class SistemaVigilanciaIntruso {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Museo museo = new Museo(10);
         try {
             ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con dos hilos.
-            Future informeVigilante = servicio.submit(new Vigilante());         //creo una variable future que va a almacenar el informe del vigilante
-            Future informeIntruso = servicio.submit(new Intruso());             //creo una variable future que va a almacenar el informe del Intruso
+            Future informeVigilante = servicio.submit(new Vigilante(museo));         //creo una variable future que va a almacenar el informe del vigilante
+            Future informeIntruso = servicio.submit(new Intruso(museo));             //creo una variable future que va a almacenar el informe del Intruso
             
             System.out.println("Informes:");
             System.out.println(informeVigilante.get());

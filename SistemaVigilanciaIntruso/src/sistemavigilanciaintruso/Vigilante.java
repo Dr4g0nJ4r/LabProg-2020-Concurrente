@@ -12,10 +12,11 @@ package sistemavigilanciaintruso;
 public class Vigilante extends Persona implements EstadoVigilante{
     EstadoVigilante estado;                                                     //variable de los estados del vigilante
     int velocidad = 0;                                                          //valocidad de recorrido 
+    Museo museo;
     
-    public Vigilante(){
+    public Vigilante(Museo m){
         this.estado = new Patrulla();
-        
+        this.museo = m;
     }
 
     @Override

@@ -10,6 +10,51 @@ package sistemavigilanciaintruso;
  * @author Me
  */
 public class Museo {
-    private Sala[] salas = new Sala[10];
+    int cantidad =1;
+    private Sala[] salas;
+    boolean esAbierto = true;
     
+    public Museo(int cant){
+        this.cantidad=cant;
+        this.salas = new Sala[cantidad];
+    }
+    public Sala[] getSalas() {
+        return salas;
+    }
+
+    public void setSalas(Sala[] salas) {
+        this.salas = salas;
+    }
+
+    public boolean EsAbierto() {
+        return esAbierto;
+    }
+
+    public void setEsAbierto(boolean esAbierto) {
+        this.esAbierto = esAbierto;
+    }
+    
+    public boolean irASala(int n){
+        //metodo para ir a la sala numero "n"
+        //retorna true si fue posible entrar a la sala
+        
+        boolean exito = false;
+        if(n>0 && n<=this.cantidad){
+            exito=true;
+            salas[n].entrar();
+        }
+        return exito;
+    }
+    
+    public boolean salirSala(int n){
+        //metodo para salir de una sala
+        
+        boolean exito = false;
+        
+        if(n>0 && n<=this.cantidad){
+            exito=true;
+            salas[n].salir();
+        }
+        return exito;
+    }
 }

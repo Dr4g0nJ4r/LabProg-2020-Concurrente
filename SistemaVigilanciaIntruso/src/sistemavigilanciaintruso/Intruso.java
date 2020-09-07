@@ -11,8 +11,10 @@ package sistemavigilanciaintruso;
  */
 public class Intruso extends Persona implements EstadoIntruso{
     EstadoIntruso estado;
-    public Intruso(){
+    Museo museo;
+    public Intruso(Museo m){
         this.estado = new Recorrer();
+        this.museo = m;
     }
     
     @Override

@@ -11,4 +11,16 @@ package sistemavigilanciaintruso;
  */
 public class Sala {
     private boolean hayPersona =false;
+    
+    public void entrar(){
+        this.hayPersona=true;
+    }
+    
+    public void salir(){
+        this.hayPersona=false;
+    }
+    
+    public boolean hayPersona(){
+        return this.hayPersona;
+    }
 }
