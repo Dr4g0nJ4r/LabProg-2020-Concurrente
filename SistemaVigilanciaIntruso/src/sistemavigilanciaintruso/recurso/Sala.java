@@ -11,6 +11,8 @@ package sistemavigilanciaintruso.recurso;
  */
 public class Sala {
     private boolean hayPersona =false;
+    private String nombre;
+    private int valor;
     
     public void entrar(){
         this.hayPersona=true;
@@ -23,4 +25,21 @@ public class Sala {
     public boolean hayPersona(){
         return this.hayPersona;
     }
+    
+    public void setNombre(String nom){
+        this.nombre=nom;
+    }
+    
+    public String getNombre(){
+        return this.nombre;
+    }
+    
+    public void setValor(int v){
+        this.valor=v;
+    }
+    
+    public int getValor(){
+        return this.valor;
+    }
+    
 }
