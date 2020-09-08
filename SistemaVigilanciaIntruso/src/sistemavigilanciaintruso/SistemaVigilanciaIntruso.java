@@ -5,6 +5,9 @@
  */
 package sistemavigilanciaintruso;
 
+import sistemavigilanciaintruso.recurso.Museo;
+import sistemavigilanciaintruso.hilos.intruso.Intruso;
+import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
