@@ -18,6 +18,7 @@ public class Vigilante extends Persona implements EstadoVigilante{
     EstadoVigilante estado;                                                     //variable de los estados del vigilante
     int tiempo = 0;                                                          //valocidad de recorrido 
     Museo museo;
+    String informe;
     
     public Vigilante(Museo m){
         this.estado = new Patrulla();
@@ -26,7 +27,7 @@ public class Vigilante extends Persona implements EstadoVigilante{
 
     @Override
     public String call() throws InterruptedException {
-        String informe = "Informe del vigilante";
+        this.informe = "Informe del vigilante";
         boolean termina = false;
         
         while(!termina){
@@ -48,6 +49,10 @@ public class Vigilante extends Persona implements EstadoVigilante{
     @Override
     public int getTiempo(){
         return estado.getTiempo();
+    }
+    
+    public void actualizarInforme(String dato){
+        this.informe += dato;
     }
     
 }
