@@ -31,10 +31,6 @@ public class Museo {
     public boolean EsAbierto() {
         return esAbierto;
     }
-
-    public void setEsAbierto(boolean esAbierto) {
-        this.esAbierto = esAbierto;
-    }
     
     public boolean irASala(int n){
         //metodo para ir a la sala numero "n"
@@ -58,5 +54,17 @@ public class Museo {
             salas[n].salir();
         }
         return exito;
+    }
+    //Método para indicar si hay una persona en una sala especifica.
+    public boolean hayAlguienEnSala(int n){
+        return this.salas[n].hayPersona();
+    }
+    
+    public void abrir(){
+        this.esAbierto=true;
+    }
+    
+    public void cerrar(){
+        this.esAbierto=false;
     }
 }
