@@ -5,15 +5,17 @@
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
 
+import sistemavigilanciaintruso.hilos.Persona;
+
 /**
  *
  * @author Me
  */
 public abstract interface EstadoVigilante {
     
-    public void accion();
+    public boolean accion(Persona persona);
     
-    public int getVelocidad();
+    public int getTiempo();
     
     public String getNombreEstado();
     

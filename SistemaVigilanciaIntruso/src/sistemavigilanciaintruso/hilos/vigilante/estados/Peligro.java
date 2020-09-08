@@ -5,6 +5,7 @@
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
 
+import sistemavigilanciaintruso.hilos.Persona;
 import sistemavigilanciaintruso.hilos.vigilante.estados.EstadoVigilante;
 
 /**
@@ -12,16 +13,20 @@ import sistemavigilanciaintruso.hilos.vigilante.estados.EstadoVigilante;
  * @author Me
  */
 public class Peligro implements EstadoVigilante{
-    int velocidad = 1000;
+    int tiempo = 1000;
     String nombre = "Peligro";
+    
     @Override
-    public void accion(){
+    public boolean accion(Persona vigilante){
+        boolean termina = false;
+        
+        return termina;
         
     }
     
     @Override
-    public int getVelocidad(){
-        return velocidad;
+    public int getTiempo(){
+        return tiempo;
     }
     
     @Override

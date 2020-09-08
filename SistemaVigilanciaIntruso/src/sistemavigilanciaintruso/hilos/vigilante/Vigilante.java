@@ -16,7 +16,7 @@ import sistemavigilanciaintruso.hilos.Persona;
  */
 public class Vigilante extends Persona implements EstadoVigilante{
     EstadoVigilante estado;                                                     //variable de los estados del vigilante
-    int velocidad = 0;                                                          //valocidad de recorrido 
+    int tiempo = 0;                                                          //valocidad de recorrido 
     Museo museo;
     
     public Vigilante(Museo m){
@@ -30,16 +30,14 @@ public class Vigilante extends Persona implements EstadoVigilante{
         boolean termina = false;
         
         while(!termina){
-            Thread.sleep(5000);
-            System.out.println("soy vigilante");
-            termina = true;
+            termina = this.estado.accion(this);
         }
         return informe;
     }
     
     @Override
-    public void accion(){
-        estado.accion();
+    public boolean accion(Persona persona){
+        return estado.accion(persona);
     }
     
     @Override
@@ -48,8 +46,8 @@ public class Vigilante extends Persona implements EstadoVigilante{
     }
     
     @Override
-    public int getVelocidad(){
-        return estado.getVelocidad();
+    public int getTiempo(){
+        return estado.getTiempo();
     }
     
 }

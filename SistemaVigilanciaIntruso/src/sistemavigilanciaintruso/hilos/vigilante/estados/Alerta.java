@@ -5,21 +5,26 @@
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
 
+import sistemavigilanciaintruso.hilos.Persona;
+
 /**
  *
  * @author Me
  */
 public class Alerta implements EstadoVigilante{
-    int velocidad = 2000;
+    int tiempo = 2000;
     String nombre = "Alerta";
     
     @Override
-    public void accion(){
+    public boolean accion(Persona vigilante){
+        boolean termina = false;
+        
+        return termina;
         
     }
     @Override
-    public int getVelocidad(){
-        return velocidad;
+    public int getTiempo(){
+        return tiempo;
     }
     
     @Override
