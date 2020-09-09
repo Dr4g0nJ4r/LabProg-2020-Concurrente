@@ -5,6 +5,8 @@
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 import sistemavigilanciaintruso.hilos.vigilante.estados.EstadoVigilante;
 
@@ -40,6 +42,11 @@ public class Patrulla implements EstadoVigilante {
                 vigilante.setEstado(new Descanso());
 
             } else {
+                try {
+                    Thread.sleep(tiempo);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
                 nroSalaActual++;
             }
