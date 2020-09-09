@@ -60,4 +60,7 @@ public class Vigilante extends Persona implements EstadoVigilante{
         return this.museo;
     }
     
+    public void setEstado(EstadoVigilante e){
+        this.estado=e;
+    }
 }

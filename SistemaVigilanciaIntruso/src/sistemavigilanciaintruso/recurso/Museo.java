@@ -93,4 +93,8 @@ public class Museo {
     public void cerrar(){
         this.esAbierto=false;
     }
+    
+    public int getCantidad(){
+        return this.cantidad;
+    }
 }

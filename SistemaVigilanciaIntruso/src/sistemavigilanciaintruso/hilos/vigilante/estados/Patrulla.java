@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
+
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 import sistemavigilanciaintruso.hilos.vigilante.estados.EstadoVigilante;
 
@@ -11,29 +12,45 @@ import sistemavigilanciaintruso.hilos.vigilante.estados.EstadoVigilante;
  *
  * @author Me
  */
-public class Patrulla implements EstadoVigilante{
-    int tiempo = 5000;
-    String nombre = "Patrulla";
-    
+public class Patrulla implements EstadoVigilante {
+
+    int tiempo = 5000;                                                          //tiempo que se tarda en patrullar la sala.
+    int cantSalas = 0;                                                          //variable para contar las salas visitadas y descansar
+    int nroSalaActual = 0;                                                      //variable para recorrer las salas
+    String nombre = "Patrulla";                                                 //nombre del estado
+
     @Override
-    public boolean accion(Vigilante vigilante){
+    public boolean accion(Vigilante vigilante) {
         boolean termina = false;
-        if(vigilante.getMuseo().EsAbierto()){                                   //si está abierto el museo, entra a hacer la patrulla.
-            
-        }else{
-            termina =true;
+        int nro = 0;
+        if (vigilante.getMuseo().EsAbierto()) {                                 //si está abierto el museo, hace la patrulla.
+            nro = nroSalaActual % vigilante.getMuseo().getCantidad();           //permite ciclar entre la sala 0 y el tamaño del museo.
+            vigilante.getMuseo().entrarASala(nro);//visita una sala y verifica si hay alguien.
+            cantSalas++;
+            if (vigilante.getMuseo().hayAlguienEnSala(nro)) {
+                vigilante.setEstado(new Peligro());//si hay alguien, pasa a un estado de peligro.
+            } else if (vigilante.getMuseo().obtenerValorSala(nro) == 0) {//si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
+                vigilante.setEstado(new Alerta());//en caso de robo, pasamos a un estado de alerta.
+            } else if (cantSalas == 2) {//si la cantSalas es igual a 2, pasamos a un estado de descanso.
+                vigilante.setEstado(new Descanso());
+
+            } else {
+                nroSalaActual++;
+            }
+        } else {
+            termina = true;
         }
         return termina;
-        
+
     }
-    
+
     @Override
-    public int getTiempo(){
+    public int getTiempo() {
         return tiempo;
     }
-    
+
     @Override
-    public String getNombreEstado(){
+    public String getNombreEstado() {
         return nombre;
     }
 }
