@@ -56,8 +56,13 @@ public class Museo {
         return exito;
     }
     //Método para indicar si hay una persona en una sala especifica.
+    
     public boolean hayAlguienEnSala(int n){
-        return this.salas[n].hayPersona();
+        boolean exito = false;
+        if(this.salas[n].getCantidadPersonas()!=0){
+            exito = true;
+        }
+        return exito;
     }
     
     public void abrir(){

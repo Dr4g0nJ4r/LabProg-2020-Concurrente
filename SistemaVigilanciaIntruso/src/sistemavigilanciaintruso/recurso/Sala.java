@@ -10,36 +10,37 @@ package sistemavigilanciaintruso.recurso;
  * @author Me
  */
 public class Sala {
-    private boolean hayPersona =false;
+
+    private int cantPersonas = 0;
     private String nombre;
     private int valor;
-    
-    public void entrar(){
-        this.hayPersona=true;
+
+    public void entrar() {
+        this.cantPersonas++;
     }
-    
-    public void salir(){
-        this.hayPersona=false;
+
+    public void salir() {
+        this.cantPersonas--;
     }
-    
-    public boolean hayPersona(){
-        return this.hayPersona;
+
+    public int getCantidadPersonas() {
+        return this.cantPersonas;
     }
-    
-    public void setNombre(String nom){
-        this.nombre=nom;
+
+    public void setNombre(String nom) {
+        this.nombre = nom;
     }
-    
-    public String getNombre(){
+
+    public String getNombre() {
         return this.nombre;
     }
-    
-    public void setValor(int v){
-        this.valor=v;
+
+    public void setValor(int v) {
+        this.valor = v;
     }
-    
-    public int getValor(){
+
+    public int getValor() {
         return this.valor;
     }
-    
+
 }
