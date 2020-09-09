@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 
 /**
@@ -17,6 +19,30 @@ public class Descanso implements EstadoVigilante{
     @Override
     public boolean accion(Vigilante vigilante){
         boolean termina = false;
+        if(vigilante.getMuseo().EsAbierto()){
+            System.out.println("Vigilante : El museo está abierto....");
+            if(vigilante.getMuseo().hayAlguienEnSala(vigilante.getNroSalaActual())){//en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
+                vigilante.setEstado(new Peligro());
+            }else{
+                System.out.println("Vigilante : Estoy en la sala "+ vigilante.getMuseo().obtenerNombreSala(vigilante.getNroSalaActual()));
+                try {
+                    Thread.sleep(tiempo);                                       //descansa una determinada cantidad de tiempo en la sala en la que quedó.
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Descanso.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("Vigilante : Terminé mi descanso...voy a patrullar de nuevo");
+                vigilante.setEstado(new Patrulla());
+            }
+        }else{
+            System.out.println("Vigilante : Ya se termina mi jornada...por suerte ya estaba en el descanso...");
+            termina = true;
+        }
+        //verificar que el museo está abierto
+        
+        //resetea el valor de la cantidad de salas visitadas
+        //hace un comentario sobre la sala
+        //reanuda la patrulla en otra sala..
+        //actualiza el informe
         
         return termina;
         

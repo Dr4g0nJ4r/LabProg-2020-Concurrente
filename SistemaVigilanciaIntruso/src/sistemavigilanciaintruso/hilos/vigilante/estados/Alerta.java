@@ -17,9 +17,21 @@ public class Alerta implements EstadoVigilante{
     @Override
     public boolean accion(Vigilante vigilante){
         boolean termina = false;
-        
+        if(vigilante.getMuseo().EsAbierto()){
+            System.out.println("Vigilante : El museo está abierto....");
+        }else{
+            termina = true;
+        }
+        //verifica que el museo este abierto
+        //recorre las salas en un tiempo más corto que la patrulla
+        //hace las verificaciones de hay persona de una manera mas rapida
+        //hace un comentario del estado de alerta
+        //la cantidad de salar recorridas tiene que ser mayor al estado de patrulla antes de pasar a patrulla
+        //reanuda la patrulla si no encuentra a nadie..
+        //va a un estado de peligro en caso de encontrar a alguien.
+        //no hace verificacion de faltante de algo de valor.
+        //actualiza el informe
         return termina;
-        
     }
     @Override
     public int getTiempo(){
