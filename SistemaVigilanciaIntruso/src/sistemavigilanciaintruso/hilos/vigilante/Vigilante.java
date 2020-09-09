@@ -19,12 +19,20 @@ public class Vigilante extends Persona implements EstadoVigilante{
     private Museo museo;
     private String informe;
     private int nroSalaActual = 1;                                                      //variable para recorrer las salas
+    private int cantSalas = 0;                                                          //variable para contar las salas visitadas y descansar
     
     public Vigilante(Museo m){
         this.estado = new Patrulla();
         this.museo = m;
     }
     
+    public int getCantSalasRecorridas(){
+        return this.cantSalas;
+    }
+    
+    public void setCantidadSalasRecorridas(int cant){
+        this.cantSalas = cant;
+    }
     public int getNroSalaActual(){
         return nroSalaActual;
     }
