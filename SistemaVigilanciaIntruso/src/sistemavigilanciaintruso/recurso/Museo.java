@@ -71,10 +71,19 @@ public class Museo {
     
     public boolean hayAlguienEnSala(int n){
         boolean exito = false;
-        if(this.salas[n].getCantidadPersonas()!=0){
-            exito = true;
+        lock.lock();
+        try {
+            if(this.salas[n].getCantidadPersonas()!=0){
+                exito = true;
+            }
+        } finally {
+            lock.unlock();
         }
         return exito;
+    }
+    
+    public int obtenerValorSala(int n){
+        return this.salas[n].getValor();
     }
     
     public void abrir(){
