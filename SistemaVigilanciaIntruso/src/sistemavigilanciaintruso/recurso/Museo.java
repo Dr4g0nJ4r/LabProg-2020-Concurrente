@@ -82,6 +82,10 @@ public class Museo {
         return exito;
     }
     
+    public String obtenerNombreSala(int n){
+        return this.salas[n].getNombre();
+    }
+    
     public int obtenerValorSala(int n){
         return this.salas[n].getValor();
     }

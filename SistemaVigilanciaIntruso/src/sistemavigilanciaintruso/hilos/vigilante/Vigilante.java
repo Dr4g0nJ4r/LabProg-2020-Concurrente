@@ -31,6 +31,7 @@ public class Vigilante extends Persona implements EstadoVigilante{
         boolean termina = false;
         
         while(!termina){
+            System.out.println("El vigilante esta en un estado de : "+this.getNombreEstado());
             termina = this.estado.accion(this);
         }
         return informe;

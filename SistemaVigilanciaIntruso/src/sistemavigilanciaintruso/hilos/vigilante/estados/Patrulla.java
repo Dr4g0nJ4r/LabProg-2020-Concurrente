@@ -24,20 +24,27 @@ public class Patrulla implements EstadoVigilante {
         boolean termina = false;
         int nro = 0;
         if (vigilante.getMuseo().EsAbierto()) {                                 //si está abierto el museo, hace la patrulla.
+            System.out.println("Vigilante : El museo está abierto....");
             nro = nroSalaActual % vigilante.getMuseo().getCantidad();           //permite ciclar entre la sala 0 y el tamaño del museo.
-            vigilante.getMuseo().entrarASala(nro);//visita una sala y verifica si hay alguien.
+            vigilante.getMuseo().entrarASala(nro);                              //visita una sala y verifica si hay alguien.
+            System.out.println("Vigilante : Entré a la sala " + vigilante.getMuseo().obtenerNombreSala(nro));
             cantSalas++;
             if (vigilante.getMuseo().hayAlguienEnSala(nro)) {
-                vigilante.setEstado(new Peligro());//si hay alguien, pasa a un estado de peligro.
-            } else if (vigilante.getMuseo().obtenerValorSala(nro) == 0) {//si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
-                vigilante.setEstado(new Alerta());//en caso de robo, pasamos a un estado de alerta.
-            } else if (cantSalas == 2) {//si la cantSalas es igual a 2, pasamos a un estado de descanso.
+                System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! ALTO AHÍ!!");
+                vigilante.setEstado(new Peligro());                             //si hay alguien, pasa a un estado de peligro.
+            } else if (vigilante.getMuseo().obtenerValorSala(nro) == 0) {       //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
+                System.out.println("Vigilante : han entrado a robar!!, estaré alerta!");
+                vigilante.setEstado(new Alerta());                              //en caso de robo, pasamos a un estado de alerta.
+            } else if (cantSalas == 2) {                                        //si la cantSalas es igual a 2, pasamos a un estado de descanso.
+                System.out.println("Vigilante : uff que agotador, descansaré un rato entre los cuadros...");
                 vigilante.setEstado(new Descanso());
 
             } else {
+                System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
                 nroSalaActual++;
             }
         } else {
+            System.out.println("Vigilante : Ya se termina mi jornada...nada fuera de lugar por hoy...");
             termina = true;
         }
         return termina;
