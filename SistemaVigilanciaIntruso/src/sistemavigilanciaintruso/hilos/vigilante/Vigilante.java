@@ -15,14 +15,22 @@ import sistemavigilanciaintruso.hilos.Persona;
  * @author Me
  */
 public class Vigilante extends Persona implements EstadoVigilante{
-    EstadoVigilante estado;                                                     //variable de los estados del vigilante
-    int tiempo = 0;                                                          //valocidad de recorrido 
-    Museo museo;
-    String informe;
+    private EstadoVigilante estado;                                                     //variable de los estados del vigilante
+    private Museo museo;
+    private String informe;
+    private int nroSalaActual = 1;                                                      //variable para recorrer las salas
     
     public Vigilante(Museo m){
         this.estado = new Patrulla();
         this.museo = m;
+    }
+    
+    public int getNroSalaActual(){
+        return nroSalaActual;
+    }
+    
+    public void incrementarNroSalaActual(){
+        this.nroSalaActual = (this.nroSalaActual + 1) % this.museo.getCantidad();//permite ciclar entre la sala 0 y el tamaño del museo.
     }
 
     @Override

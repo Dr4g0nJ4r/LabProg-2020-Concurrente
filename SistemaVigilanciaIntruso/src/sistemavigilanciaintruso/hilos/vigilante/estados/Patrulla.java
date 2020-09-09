@@ -18,7 +18,6 @@ public class Patrulla implements EstadoVigilante {
 
     int tiempo = 5000;                                                          //tiempo que se tarda en patrullar la sala.
     int cantSalas = 0;                                                          //variable para contar las salas visitadas y descansar
-    int nroSalaActual = 0;                                                      //variable para recorrer las salas
     String nombre = "Patrulla";                                                 //nombre del estado
 
     @Override
@@ -27,7 +26,7 @@ public class Patrulla implements EstadoVigilante {
         int nro = 0;
         if (vigilante.getMuseo().EsAbierto()) {                                 //si está abierto el museo, hace la patrulla.
             System.out.println("Vigilante : El museo está abierto....");
-            nro = nroSalaActual % vigilante.getMuseo().getCantidad();           //permite ciclar entre la sala 0 y el tamaño del museo.
+            nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
             vigilante.getMuseo().entrarASala(nro);                              //visita una sala y verifica si hay alguien.
             System.out.println("Vigilante : Entré a la sala " + vigilante.getMuseo().obtenerNombreSala(nro));
             cantSalas++;
@@ -48,7 +47,7 @@ public class Patrulla implements EstadoVigilante {
                     Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
-                nroSalaActual++;
+                vigilante.incrementarNroSalaActual();                           //incrementa el valor de la sala
             }
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...nada fuera de lugar por hoy...");
