@@ -18,7 +18,11 @@ public class Patrulla implements EstadoVigilante{
     @Override
     public boolean accion(Vigilante vigilante){
         boolean termina = false;
-        
+        if(vigilante.getMuseo().EsAbierto()){                                   //si está abierto el museo, entra a hacer la patrulla.
+            
+        }else{
+            termina =true;
+        }
         return termina;
         
     }
