@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
-
-import sistemavigilanciaintruso.hilos.Persona;
+import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 
 /**
  *
@@ -16,7 +15,7 @@ public class Alerta implements EstadoVigilante{
     String nombre = "Alerta";
     
     @Override
-    public boolean accion(Persona vigilante){
+    public boolean accion(Vigilante vigilante){
         boolean termina = false;
         
         return termina;

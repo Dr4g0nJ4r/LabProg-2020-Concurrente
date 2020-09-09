@@ -37,7 +37,7 @@ public class Vigilante extends Persona implements EstadoVigilante{
     }
     
     @Override
-    public boolean accion(Persona persona){
+    public boolean accion(Vigilante persona){
         return estado.accion(persona);
     }
     
@@ -53,6 +53,11 @@ public class Vigilante extends Persona implements EstadoVigilante{
     
     public void actualizarInforme(String dato){
         this.informe += dato;
+    }
+    
+    public Museo getMuseo(){
+        
+        return this.museo;
     }
     
 }

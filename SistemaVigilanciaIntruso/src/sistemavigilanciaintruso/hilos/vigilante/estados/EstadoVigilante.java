@@ -5,7 +5,7 @@
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
 
-import sistemavigilanciaintruso.hilos.Persona;
+import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 
 /**
  *
@@ -13,7 +13,7 @@ import sistemavigilanciaintruso.hilos.Persona;
  */
 public abstract interface EstadoVigilante {
     
-    public boolean accion(Persona persona);
+    public boolean accion(Vigilante persona);
     
     public int getTiempo();
     
