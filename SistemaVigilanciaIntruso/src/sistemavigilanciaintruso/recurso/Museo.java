@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.recurso;
-
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import sistemavigilanciaintruso.recurso.Sala;
@@ -17,15 +16,23 @@ public class Museo {
     private Lock lock = new ReentrantLock();
     int cantidad =1;
     private Sala[] salas;
-    boolean esAbierto = true;
+    private boolean esAbierto = true;
+    private String[] nombreSala;
     
     public Museo(int cant){
+        this.nombreSala = new String[]{"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
         this.cantidad=cant;
         this.salas = new Sala[cantidad];
+        int i;
+        for(i=0;i<salas.length;i++){
+            salas[i].setNombre(nombreSala[i]);
+        }
     }
     public Sala[] getSalas() {
         return salas;
     }
+    
+    
 
     public void setSalas(Sala[] salas) {
         this.salas = salas;
