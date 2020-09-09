@@ -5,6 +5,8 @@
  */
 package sistemavigilanciaintruso.recurso;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import sistemavigilanciaintruso.recurso.Sala;
 
 /**
@@ -12,6 +14,7 @@ import sistemavigilanciaintruso.recurso.Sala;
  * @author Me
  */
 public class Museo {
+    private Lock lock = new ReentrantLock();
     int cantidad =1;
     private Sala[] salas;
     boolean esAbierto = true;
@@ -32,14 +35,19 @@ public class Museo {
         return esAbierto;
     }
     
-    public boolean irASala(int n){
+    public boolean entrarASala(int n){
         //metodo para ir a la sala numero "n"
         //retorna true si fue posible entrar a la sala
         
         boolean exito = false;
-        if(n>0 && n<=this.cantidad){
-            exito=true;
-            salas[n].entrar();
+        lock.lock();
+        try {
+            if(n>0 && n<=this.cantidad){
+                exito=true;
+                salas[n].entrar();
+            }
+        } finally {
+            lock.unlock();
         }
         return exito;
     }
@@ -48,10 +56,14 @@ public class Museo {
         //metodo para salir de una sala
         
         boolean exito = false;
-        
-        if(n>0 && n<=this.cantidad){
-            exito=true;
-            salas[n].salir();
+        lock.lock();
+        try {
+            if(n>0 && n<=this.cantidad){
+                exito=true;
+                salas[n].salir();
+            }
+        } finally {
+            lock.unlock();
         }
         return exito;
     }
