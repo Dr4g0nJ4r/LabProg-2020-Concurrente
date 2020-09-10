@@ -33,6 +33,9 @@ public class Vigilante extends Persona implements EstadoVigilante{
     public void setCantidadSalasRecorridas(int cant){
         this.cantSalas = cant;
     }
+    public void setNroSalaActual(int n){
+        this.nroSalaActual=n;
+    }
     public int getNroSalaActual(){
         return nroSalaActual;
     }

@@ -22,10 +22,9 @@ public class Patrulla implements EstadoVigilante {
     @Override
     public boolean accion(Vigilante vigilante) {
         boolean termina = false;
-        int nro;
+        int nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
         if (vigilante.getMuseo().EsAbierto()) {                                 //si está abierto el museo, hace la patrulla.
             System.out.println("Vigilante : El museo está abierto....");
-            nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
             vigilante.getMuseo().entrarASala(nro);                              //visita una sala y verifica si hay alguien.
             System.out.println("Vigilante : Entré a la sala " + vigilante.getMuseo().obtenerNombreSala(nro));
             vigilante.setCantidadSalasRecorridas(vigilante.getCantSalasRecorridas() + 1);
@@ -44,13 +43,21 @@ public class Patrulla implements EstadoVigilante {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
+                if(vigilante.getMuseo().hayAlguienEnSala(nro)){
+                    System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! ALTO AHÍ!!");
+                    vigilante.setEstado(new Peligro());
+                }else{
+                    System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
+                    vigilante.incrementarNroSalaActual();                       //incrementa el valor de la sala
+                }
+                
                 vigilante.getMuseo().salirSala(nro);                            //salir de la sala
-                vigilante.incrementarNroSalaActual();                           //incrementa el valor de la sala
+                
             }
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...nada fuera de lugar por hoy...");
             termina = true;
+            vigilante.getMuseo().salirSala(nro);                                //salir de la sala
         }
         return termina;
 
