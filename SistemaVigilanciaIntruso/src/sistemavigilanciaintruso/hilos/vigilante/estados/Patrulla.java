@@ -45,6 +45,7 @@ public class Patrulla implements EstadoVigilante {
                     Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
+                vigilante.getMuseo().salirSala(nro);                            //salir de la sala
                 vigilante.incrementarNroSalaActual();                           //incrementa el valor de la sala
             }
         } else {
