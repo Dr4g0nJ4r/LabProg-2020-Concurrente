@@ -13,16 +13,14 @@ import sistemavigilanciaintruso.recurso.Sala;
 public class Museo {
     int cantidad =1;
     private Sala[] salas;
-    private boolean esCerrado = true;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
-    private String[] nombreSala;
+    private boolean esCerrado = true;
     
-    public Museo(int cant){
-        this.nombreSala = new String[]{"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
+    public Museo(int cant,String[] s){
         this.cantidad=cant;
         this.salas = new Sala[cantidad];
         int i;
         for(i=0;i<salas.length;i++){
-            salas[i].setNombre(nombreSala[i]);
+            salas[i].setNombre(s[i]);
         }
     }
     public Sala[] getSalas() {
