@@ -23,7 +23,7 @@ public class Patrulla implements EstadoVigilante {
     public boolean accion(Vigilante vigilante) {
         boolean termina = false;
         int nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
-        if (vigilante.getMuseo().EsAbierto()) {                                 //si está abierto el museo, hace la patrulla.
+        if (vigilante.getMuseo().EsAbierto()) {                                 //si está abierto el museo, hace la patrulla.(cambiar Nobre a cerrado)
             System.out.println("Vigilante : El museo está abierto....");
             vigilante.getMuseo().entrarASala(nro);                              //visita una sala y verifica si hay alguien.
             System.out.println("Vigilante : Entré a la sala " + vigilante.getMuseo().obtenerNombreSala(nro));

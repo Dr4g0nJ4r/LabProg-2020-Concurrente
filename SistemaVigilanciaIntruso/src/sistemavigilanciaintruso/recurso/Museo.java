@@ -13,7 +13,6 @@ import sistemavigilanciaintruso.recurso.Sala;
  * @author Me
  */
 public class Museo {
-    private Lock lock = new ReentrantLock();
     int cantidad =1;
     private Sala[] salas;
     private boolean esAbierto = true;
@@ -47,45 +46,33 @@ public class Museo {
         //retorna true si fue posible entrar a la sala
         
         boolean exito = false;
-        lock.lock();
-        try {
+        
             if(n>0 && n<=this.cantidad){
                 exito=true;
                 salas[n].entrar();
             }
-        } finally {
-            lock.unlock();
-        }
-        return exito;
+        
     }
     
     public boolean salirSala(int n){
         //metodo para salir de una sala
         
         boolean exito = false;
-        lock.lock();
-        try {
             if(n>0 && n<=this.cantidad){
                 exito=true;
                 salas[n].salir();
             }
-        } finally {
-            lock.unlock();
-        }
+        
         return exito;
     }
     //Método para indicar si hay una persona en una sala especifica.
     
     public boolean hayAlguienEnSala(int n){
         boolean exito = false;
-        lock.lock();
-        try {
             if(this.salas[n].getCantidadPersonas()!=0){
                 exito = true;
             }
-        } finally {
-            lock.unlock();
-        }
+        
         return exito;
     }
     
