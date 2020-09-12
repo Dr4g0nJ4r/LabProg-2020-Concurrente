@@ -13,6 +13,10 @@ import sistemavigilanciaintruso.hilos.intruso.Intruso;
  */
 public class Atrapado implements EstadoIntruso{
 
+    
+    private String nombre = "Recorrer";
+    private int tiempo = 1000;
+    
     @Override
     public boolean accion(Intruso persona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
