@@ -51,7 +51,7 @@ public class Museo {
                 exito=true;
                 salas[n].entrar();
             }
-        
+        return exito;
     }
     
     public boolean salirSala(int n){
