@@ -17,7 +17,7 @@ import sistemavigilanciaintruso.hilos.Persona;
 public class Vigilante extends Persona implements EstadoVigilante{
     private EstadoVigilante estado;                                                     //variable de los estados del vigilante
     private Museo museo;
-    private String informe;
+    private StringBuilder informe;
     private int nroSalaActual = 1;                                                      //variable para recorrer las salas
     private int cantSalas = 0;                                                          //variable para contar las salas visitadas y descansar
     
@@ -47,8 +47,8 @@ public class Vigilante extends Persona implements EstadoVigilante{
     }
 
     @Override
-    public String call() throws InterruptedException {
-        this.informe = "Informe del vigilante";
+    public StringBuilder call() throws InterruptedException {
+        this.informe.append("Informe del vigilante");
         boolean termina = false;
         
         while(!termina){
@@ -67,6 +67,10 @@ public class Vigilante extends Persona implements EstadoVigilante{
         return this.museo.entrarASala(nro);
     }
     
+    public boolean salirDeSalaMuseo(int nro){
+        return this.museo.salirSala(nro);
+    }
+    
     @Override
     public String getNombreEstado(){
         return estado.getNombreEstado();
@@ -78,7 +82,7 @@ public class Vigilante extends Persona implements EstadoVigilante{
     }
     
     public void actualizarInforme(String dato){
-        this.informe += dato;
+        this.informe.append(dato+"\n");
     }
     
     public Museo getMuseo(){
@@ -98,5 +102,7 @@ public class Vigilante extends Persona implements EstadoVigilante{
         return this.museo.hayAlguienEnSala(nro);
     }
     
-    
+    public int obtenerValorSalaMuseo(int nro){
+        return this.museo.obtenerValorSala(nro);
+    }
 }

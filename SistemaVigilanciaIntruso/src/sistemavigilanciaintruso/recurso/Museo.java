@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.recurso;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import sistemavigilanciaintruso.recurso.Sala;
 
 /**

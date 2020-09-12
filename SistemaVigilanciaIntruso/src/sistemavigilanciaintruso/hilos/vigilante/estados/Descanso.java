@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
@@ -12,34 +13,36 @@ import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
  *
  * @author Me
  */
-public class Descanso implements EstadoVigilante{
+public class Descanso implements EstadoVigilante {
+
     int tiempo = 10000;
     String nombre = "Descanso";
-    
+
     @Override
-    public boolean accion(Vigilante vigilante){
+    public boolean accion(Vigilante vigilante) {
         boolean termina = false;
-        if(vigilante.esCerradoMuseo()){
+        if (vigilante.esCerradoMuseo()) {
             System.out.println("Vigilante : El museo está abierto....");
-            if(vigilante.getMuseo().hayAlguienEnSala(vigilante.getNroSalaActual())){//en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
+            if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {//en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
                 vigilante.setEstado(new Peligro());
-            }else{
-                System.out.println("Vigilante : Estoy en la sala "+ vigilante.getMuseo().obtenerNombreSala(vigilante.getNroSalaActual()));
+            } else {
+                System.out.println("Vigilante : Estoy en la sala " + vigilante.getMuseo().obtenerNombreSala(vigilante.getNroSalaActual()));
                 try {
                     Thread.sleep(tiempo);                                       //descansa una determinada cantidad de tiempo en la sala en la que quedó.
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Descanso.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    System.out.println("Vigilante : Terminé mi descanso...voy a patrullar de nuevo");
+                    if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {//verifica nuevamente si hay alguien en la sale una vez terminado el descanso
+                        vigilante.setEstado(new Peligro());
+                    } else {
+                        vigilante.setCantidadSalasRecorridas(0);                        //resetea el valor de la cantidad de salas visitadas
+                        vigilante.setEstado(new Patrulla());
+                    }
                 }
-                System.out.println("Vigilante : Terminé mi descanso...voy a patrullar de nuevo");
-                if(vigilante.getMuseo().hayAlguienEnSala(vigilante.getNroSalaActual())){//verifica nuevamente si hay alguien en la sale una vez terminado el descanso
-                    vigilante.setEstado(new Peligro());
-                }else{
-                   vigilante.setCantidadSalasRecorridas(0);                        //resetea el valor de la cantidad de salas visitadas
-                   vigilante.setEstado(new Patrulla()); 
-                }
-                
+
             }
-        }else{
+        } else {
             System.out.println("Vigilante : Ya se termina mi jornada...por suerte ya estaba en el descanso...");
             termina = true;
         }
@@ -47,18 +50,18 @@ public class Descanso implements EstadoVigilante{
         //hace un comentario sobre la sala
         //reanuda la patrulla en otra sala..
         //actualiza el informe
-        
+
         return termina;
-        
+
     }
-    
+
     @Override
-    public int getTiempo(){
+    public int getTiempo() {
         return tiempo;
     }
-    
+
     @Override
-    public String getNombreEstado(){
+    public String getNombreEstado() {
         return nombre;
     }
 }

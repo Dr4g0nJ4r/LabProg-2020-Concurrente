@@ -25,13 +25,13 @@ public class Patrulla implements EstadoVigilante {
         int nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
         if (vigilante.esCerradoMuseo()) {                                       //si está cerrado, hace la patrulla.
             System.out.println("Vigilante : El museo está abierto....");
-            vigilante.entrarEnSalaMuseo(nro);                              //visita una sala y verifica si hay alguien.
+            vigilante.entrarEnSalaMuseo(nro);                                   //visita una sala y verifica si hay alguien.
             System.out.println("Vigilante : Entré a la sala " + vigilante.obtenerNombreSalaMuseo(nro));
             vigilante.setCantidadSalasRecorridas(vigilante.getCantSalasRecorridas() + 1);
             if (vigilante.alguienSalaMuseo(nro)) {
                 System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! ALTO AHÍ!!");
                 vigilante.setEstado(new Peligro());                             //si hay alguien, pasa a un estado de peligro.
-            } else if (vigilante.getMuseo().obtenerValorSala(nro) == 0) {       //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
+            } else if (vigilante.obtenerValorSalaMuseo(nro) == 0) {             //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
                 System.out.println("Vigilante : han entrado a robar!!, estaré alerta!");
                 vigilante.setEstado(new Alerta());                              //en caso de robo, pasamos a un estado de alerta.
             } else if (vigilante.getCantSalasRecorridas() == 2) {               //si la cantSalas es igual a 2, pasamos a un estado de descanso.
@@ -42,8 +42,8 @@ public class Patrulla implements EstadoVigilante {
                     Thread.sleep(tiempo);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if(vigilante.getMuseo().hayAlguienEnSala(nro)){
+                }finally{                                                       //en caso de que falle el método sleep ejecuta los demás comportamientos.
+                    if(vigilante.alguienSalaMuseo(nro)){
                     System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! ALTO AHÍ!!");
                     vigilante.setEstado(new Peligro());
                 }else{
@@ -51,13 +51,13 @@ public class Patrulla implements EstadoVigilante {
                     vigilante.incrementarNroSalaActual();                       //incrementa el valor de la sala
                 }
                 
-                vigilante.getMuseo().salirSala(nro);                            //salir de la sala
-                
+                vigilante.salirDeSalaMuseo(nro);                                //salir de la sala
+                }
             }
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...nada fuera de lugar por hoy...");
             termina = true;
-            vigilante.getMuseo().salirSala(nro);                                //salir de la sala
+            vigilante.salirDeSalaMuseo(nro);                                    //salir de la sala
         }
         return termina;
 
