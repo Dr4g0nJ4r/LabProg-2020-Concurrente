@@ -15,7 +15,7 @@ import sistemavigilanciaintruso.recurso.Sala;
 public class Museo {
     int cantidad =1;
     private Sala[] salas;
-    private boolean esAbierto = true;
+    private boolean esCerrado = true;
     private String[] nombreSala;
     
     public Museo(int cant){
@@ -37,8 +37,8 @@ public class Museo {
         this.salas = salas;
     }
 
-    public boolean EsAbierto() {
-        return esAbierto;
+    public boolean EsCerrado() {
+        return esCerrado;
     }
     
     public boolean entrarASala(int n){
@@ -85,11 +85,11 @@ public class Museo {
     }
     
     public void abrir(){
-        this.esAbierto=true;
+        this.esCerrado=false;
     }
     
     public void cerrar(){
-        this.esAbierto=false;
+        this.esCerrado=true;
     }
     
     public int getCantidad(){

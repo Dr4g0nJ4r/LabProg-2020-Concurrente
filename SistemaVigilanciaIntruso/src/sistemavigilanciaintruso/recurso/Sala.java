@@ -5,6 +5,9 @@
  */
 package sistemavigilanciaintruso.recurso;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  *
  * @author Me
@@ -14,13 +17,24 @@ public class Sala {
     private int cantPersonas = 0;
     private String nombre;
     private int valor;
+    private Lock lock = new ReentrantLock();
 
     public void entrar() {
-        this.cantPersonas++;
+        lock.lock();
+        try {
+            this.cantPersonas++;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void salir() {
-        this.cantPersonas--;
+        lock.lock();
+        try {
+            this.cantPersonas--;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public int getCantidadPersonas() {

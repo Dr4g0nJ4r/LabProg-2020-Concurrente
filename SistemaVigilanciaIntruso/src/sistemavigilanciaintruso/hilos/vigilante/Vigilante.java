@@ -39,7 +39,9 @@ public class Vigilante extends Persona implements EstadoVigilante{
     public int getNroSalaActual(){
         return nroSalaActual;
     }
-    
+    public boolean esCerradoMuseo(){
+        return this.museo.EsCerrado();
+    }
     public void incrementarNroSalaActual(){
         this.nroSalaActual = (this.nroSalaActual + 1) % this.museo.getCantidad();//permite ciclar entre la sala 0 y el tamaño del museo.
     }
@@ -58,7 +60,11 @@ public class Vigilante extends Persona implements EstadoVigilante{
     
     @Override
     public boolean accion(Vigilante persona){
-        return estado.accion(persona);
+        return this.estado.accion(persona);
+    }
+    
+    public boolean entrarEnSalaMuseo(int nro){
+        return this.museo.entrarASala(nro);
     }
     
     @Override
@@ -83,4 +89,14 @@ public class Vigilante extends Persona implements EstadoVigilante{
     public void setEstado(EstadoVigilante e){
         this.estado=e;
     }
+    
+    public String obtenerNombreSalaMuseo(int nro){
+        return this.museo.obtenerNombreSala(nro);
+    }
+    
+    public boolean alguienSalaMuseo(int nro){
+        return this.museo.hayAlguienEnSala(nro);
+    }
+    
+    
 }

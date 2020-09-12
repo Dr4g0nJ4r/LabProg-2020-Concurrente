@@ -19,7 +19,7 @@ public class Descanso implements EstadoVigilante{
     @Override
     public boolean accion(Vigilante vigilante){
         boolean termina = false;
-        if(vigilante.getMuseo().EsAbierto()){
+        if(vigilante.esCerradoMuseo()){
             System.out.println("Vigilante : El museo está abierto....");
             if(vigilante.getMuseo().hayAlguienEnSala(vigilante.getNroSalaActual())){//en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
                 vigilante.setEstado(new Peligro());

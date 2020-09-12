@@ -23,12 +23,12 @@ public class Patrulla implements EstadoVigilante {
     public boolean accion(Vigilante vigilante) {
         boolean termina = false;
         int nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
-        if (vigilante.getMuseo().EsAbierto()) {                                 //si está abierto el museo, hace la patrulla.(cambiar Nobre a cerrado)
+        if (vigilante.esCerradoMuseo()) {                                       //si está cerrado, hace la patrulla.
             System.out.println("Vigilante : El museo está abierto....");
-            vigilante.getMuseo().entrarASala(nro);                              //visita una sala y verifica si hay alguien.
-            System.out.println("Vigilante : Entré a la sala " + vigilante.getMuseo().obtenerNombreSala(nro));
+            vigilante.entrarEnSalaMuseo(nro);                              //visita una sala y verifica si hay alguien.
+            System.out.println("Vigilante : Entré a la sala " + vigilante.obtenerNombreSalaMuseo(nro));
             vigilante.setCantidadSalasRecorridas(vigilante.getCantSalasRecorridas() + 1);
-            if (vigilante.getMuseo().hayAlguienEnSala(nro)) {
+            if (vigilante.alguienSalaMuseo(nro)) {
                 System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! ALTO AHÍ!!");
                 vigilante.setEstado(new Peligro());                             //si hay alguien, pasa a un estado de peligro.
             } else if (vigilante.getMuseo().obtenerValorSala(nro) == 0) {       //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
