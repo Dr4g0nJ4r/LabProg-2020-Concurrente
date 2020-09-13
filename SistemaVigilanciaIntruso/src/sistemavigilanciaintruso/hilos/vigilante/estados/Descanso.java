@@ -21,9 +21,9 @@ public class Descanso implements EstadoVigilante {
     @Override
     public boolean accion(Vigilante vigilante) {
         boolean termina = false;
-        if (vigilante.esCerradoMuseo()) {
+        if (vigilante.esCerradoMuseo()) {                                       //verificar que el museo está abierto
             System.out.println("Vigilante : El museo está abierto....");
-            if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {//en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
+            if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {     //en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
                 vigilante.setEstado(new Peligro());
             } else {
                 System.out.println("Vigilante : Estoy en la sala " + vigilante.obtenerNombreSalaMuseo(vigilante.getNroSalaActual()));
@@ -32,20 +32,17 @@ public class Descanso implements EstadoVigilante {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Descanso.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
-
-                    vigilante.setCantidadSalasRecorridas(0);                        //resetea el valor de la cantidad de salas visitadas
-                    vigilante.setEstado(new Patrulla());
-
+                    vigilante.setCantidadSalasRecorridas(0);                    //resetea el valor de la cantidad de salas visitadas
+                    vigilante.setEstado(new Patrulla());                        //reanuda la patrulla
                 }
-
             }
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...por suerte ya estaba en el descanso...");
             termina = true;
         }
-        //verificar que el museo está abierto
+        
         //hace un comentario sobre la sala
-        //reanuda la patrulla en otra sala..
+        
         //actualiza el informe
 
         return termina;
