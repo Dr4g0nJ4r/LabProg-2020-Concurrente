@@ -35,8 +35,7 @@ public class Intruso extends Persona implements EstadoIntruso{
     public StringBuilder call(){                                                  
         informe.append("Informe del Intruso");                                     
         this.actualizarInforme("Ingresé al Museo. La ventana del pasillo estaba abierta...");
-        
-        while(!this.atrapado)
+        while(!this.atrapado && this.esCerradoMuseo())
         {
             System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
             this.accion(this);
@@ -69,7 +68,7 @@ public class Intruso extends Persona implements EstadoIntruso{
     }
     
     public void actualizarInforme(String dato){
-        this.informe.append(dato+"\n");
+        this.informe.append("Intruso: "+dato+"\n");
     }
     
     public Museo getMuseo(){
@@ -97,9 +96,6 @@ public class Intruso extends Persona implements EstadoIntruso{
         return this.salasRecorridas.size();
     }
     
-    public void salaSaqueada(int n){
-        this.salasRecorridas.add(n);
-    }
     
     public boolean museoSaqueado(){
         boolean res;
@@ -114,8 +110,18 @@ public class Intruso extends Persona implements EstadoIntruso{
         return res;
     }
     
+    public int elegirSala(){
+        int numSala;
+        do{
+        numSala = (int) (Math.random() * museo.getCantidad() - 1) + 1;
+        } while(salasRecorridas.contains(numSala));
+        
+        return numSala;
+    }
+    
     public void setNroSalaActual(int n){
         this.nroSalaActual=n;
+        this.salasRecorridas.add(n);
     }
     public int getNroSalaActual(){
         return nroSalaActual;

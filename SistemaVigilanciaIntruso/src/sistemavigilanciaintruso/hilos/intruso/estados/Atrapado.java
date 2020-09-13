@@ -14,7 +14,7 @@ import sistemavigilanciaintruso.hilos.intruso.Intruso;
 public class Atrapado implements EstadoIntruso{
 
     
-    private String nombre = "Recorrer";
+    private String nombre = "Atrapado";
     private int tiempo = 1000;
     
     @Override
