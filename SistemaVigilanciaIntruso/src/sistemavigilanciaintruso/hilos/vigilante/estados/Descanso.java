@@ -32,13 +32,10 @@ public class Descanso implements EstadoVigilante {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Descanso.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
-                    System.out.println("Vigilante : Terminé mi descanso...voy a patrullar de nuevo");
-                    if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {//verifica nuevamente si hay alguien en la sale una vez terminado el descanso
-                        vigilante.setEstado(new Peligro());
-                    } else {
-                        vigilante.setCantidadSalasRecorridas(0);                        //resetea el valor de la cantidad de salas visitadas
-                        vigilante.setEstado(new Patrulla());
-                    }
+
+                    vigilante.setCantidadSalasRecorridas(0);                        //resetea el valor de la cantidad de salas visitadas
+                    vigilante.setEstado(new Patrulla());
+
                 }
 
             }

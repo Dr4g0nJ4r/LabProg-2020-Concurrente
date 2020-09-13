@@ -42,16 +42,11 @@ public class Patrulla implements EstadoVigilante {
                     Thread.sleep(tiempo);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
-                }finally{                                                       //en caso de que falle el método sleep ejecuta los demás comportamientos.
-                    if(vigilante.alguienSalaMuseo(nro)){
-                    System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! ALTO AHÍ!!");
-                    vigilante.setEstado(new Peligro());
-                }else{
+                } finally {                                                       //en caso de que falle el método sleep ejecuta los demás comportamientos.
+
                     System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
                     vigilante.incrementarNroSalaActual();                       //incrementa el valor de la sala
-                }
-                
-                vigilante.salirDeSalaMuseo(nro);                                //salir de la sala
+                    vigilante.salirDeSalaMuseo(nro);                            //salir de la sala
                 }
             }
         } else {
