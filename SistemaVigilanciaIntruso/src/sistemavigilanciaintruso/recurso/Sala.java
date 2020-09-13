@@ -16,7 +16,7 @@ public class Sala {
 
     private int cantPersonas = 0;
     private String nombre;
-    private int valor;
+    private int valor=10;
     private Lock lock = new ReentrantLock();
 
     public void entrar() {

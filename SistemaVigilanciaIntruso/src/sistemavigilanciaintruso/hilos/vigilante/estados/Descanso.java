@@ -22,21 +22,20 @@ public class Descanso implements EstadoVigilante {
     public void accion(Vigilante vigilante) {
         if (vigilante.esCerradoMuseo()) {                                       //verificar que el museo está abierto
             System.out.println("Vigilante : El museo está abierto....");
-            if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {     //en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
-                vigilante.setEstado(new Peligro());
-            } else {
-                System.out.println("Vigilante : Estoy en la sala de " + vigilante.obtenerNombreSalaMuseo(vigilante.getNroSalaActual()));
-                System.out.println("Vigilante: Que belleza!...");               //hace un comentario sobre la sala
-                try {
-                    Thread.sleep(tiempo);                                       //descansa una determinada cantidad de tiempo en la sala en la que quedó.
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Descanso.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    vigilante.setCantidadSalasRecorridas(0);                    //resetea el valor de la cantidad de salas visitadas
-                    vigilante.setEstado(new Patrulla());                        //reanuda la patrulla
-                    vigilante.actualizarInforme("tomé un descanso");
-                }
+            vigilante.entrarEnSalaMuseo(vigilante.getNroSalaActual());
+            System.out.println("Vigilante : Estoy en la sala de " + vigilante.obtenerNombreSalaMuseo(vigilante.getNroSalaActual()));
+            System.out.println("Vigilante: Que belleza!...");               //hace un comentario sobre la sala
+            try {
+                Thread.sleep(tiempo);                                       //descansa una determinada cantidad de tiempo en la sala en la que quedó.
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Descanso.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                vigilante.setCantidadSalasRecorridas(0);                    //resetea el valor de la cantidad de salas visitadas
+                vigilante.salirDeSalaMuseo(vigilante.getNroSalaActual());
+                vigilante.setEstado(new Patrulla());                        //reanuda la patrulla
+//                vigilante.actualizarInforme("tomé un descanso");
             }
+
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...por suerte ya estaba en el descanso...");
             vigilante.setTermina(true);

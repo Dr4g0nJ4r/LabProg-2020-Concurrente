@@ -22,7 +22,7 @@ public class Museo {
         this.salas = new Sala[cantidad];
         int i;
         for(i=0;i<salas.length;i++){
-            salas[i].setNombre(nombres[i]);
+            salas[i]= new Sala();
         }
     }
     public Sala[] getSalas() {
@@ -44,8 +44,7 @@ public class Museo {
         //retorna true si fue posible entrar a la sala
         
         boolean exito = false;
-        
-            if(n>0 && n<=this.cantidad){
+            if(n>=0 && n<=this.cantidad){
                 exito=true;
                 salas[n].entrar();
             }
@@ -56,7 +55,7 @@ public class Museo {
         //metodo para salir de una sala
         
         boolean exito = false;
-            if(n>0 && n<=this.cantidad){
+            if(n>=0 && n<=this.cantidad){
                 exito=true;
                 salas[n].salir();
             }
