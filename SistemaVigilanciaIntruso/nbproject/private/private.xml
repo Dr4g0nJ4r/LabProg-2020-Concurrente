@@ -8,7 +8,11 @@
             <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/vigilante/Vigilante.java</file>
             <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/vigilante/estados/Alerta.java</file>
             <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/vigilante/estados/Peligro.java</file>
+            <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/intruso/estados/Atrapado.java</file>
+            <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/intruso/Intruso.java</file>
             <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/vigilante/estados/Patrulla.java</file>
+            <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/intruso/estados/Robar.java</file>
+            <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/intruso/estados/Recorrer.java</file>
             <file>file:/C:/Users/Me/Documents/NetBeansProjects/LabProg-2020-Concurrente/SistemaVigilanciaIntruso/src/sistemavigilanciaintruso/hilos/vigilante/estados/Descanso.java</file>
         </group>
     </open-files>

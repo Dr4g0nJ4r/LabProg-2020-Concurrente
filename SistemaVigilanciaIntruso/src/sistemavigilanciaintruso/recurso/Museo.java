@@ -15,8 +15,8 @@ public class Museo {
     private Sala[] salas;
     private boolean esCerrado = true;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
     
-    public Museo(int cant,String[] nombres){
-        this.cantidad=cant;
+    public Museo(String[] nombres){
+        this.cantidad=nombres.length;
         this.salas = new Sala[cantidad];
         int i;
         for(i=0;i<salas.length;i++){
