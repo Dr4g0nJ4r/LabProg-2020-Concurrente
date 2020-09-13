@@ -9,7 +9,7 @@ public class Robar implements EstadoIntruso{
     private int tiempo = 10000;
     
     @Override
-    public boolean accion(Intruso persona) {
+    public void accion(Intruso persona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

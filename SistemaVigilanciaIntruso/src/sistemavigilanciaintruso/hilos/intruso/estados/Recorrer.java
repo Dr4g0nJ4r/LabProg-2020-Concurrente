@@ -17,18 +17,18 @@ public class Recorrer implements EstadoIntruso{
     private int tiempo = 7000;
             
     @Override
-    public boolean accion(Intruso persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void accion(Intruso persona) {
+
     }
 
     @Override
     public int getTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.tiempo;
     }
 
     @Override
     public String getNombreEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.nombre;
     }
     
 }
