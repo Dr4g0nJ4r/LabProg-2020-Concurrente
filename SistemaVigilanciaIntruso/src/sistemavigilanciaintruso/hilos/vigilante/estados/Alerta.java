@@ -34,6 +34,7 @@ public class Alerta implements EstadoVigilante {
             } else if (vigilante.getCantSalasRecorridas() == 5) {               //si la cantSalas es igual a 5, pasamos a un estado de patrulla.
                 System.out.println("Vigilante : no encontré a nadie...");       
                 vigilante.setEstado(new Patrulla());
+                vigilante.setCantidadSalasRecorridas(0);                        //resetea la cantidad de salas recorridas antes de pasar a patrulla.
             } else {
                 try {
                     Thread.sleep(tiempo);                                       //recorre las salas en un tiempo más corto que la patrulla

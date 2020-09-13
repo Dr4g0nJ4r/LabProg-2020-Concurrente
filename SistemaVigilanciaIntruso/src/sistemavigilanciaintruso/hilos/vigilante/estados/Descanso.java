@@ -26,7 +26,8 @@ public class Descanso implements EstadoVigilante {
             if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {     //en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
                 vigilante.setEstado(new Peligro());
             } else {
-                System.out.println("Vigilante : Estoy en la sala " + vigilante.obtenerNombreSalaMuseo(vigilante.getNroSalaActual()));
+                System.out.println("Vigilante : Estoy en la sala de " + vigilante.obtenerNombreSalaMuseo(vigilante.getNroSalaActual()));
+                System.out.println("Vigilante: Que belleza!...");               //hace un comentario sobre la sala
                 try {
                     Thread.sleep(tiempo);                                       //descansa una determinada cantidad de tiempo en la sala en la que quedó.
                 } catch (InterruptedException ex) {
@@ -34,6 +35,7 @@ public class Descanso implements EstadoVigilante {
                 } finally {
                     vigilante.setCantidadSalasRecorridas(0);                    //resetea el valor de la cantidad de salas visitadas
                     vigilante.setEstado(new Patrulla());                        //reanuda la patrulla
+                    vigilante.actualizarInforme("tomé un descanso");
                 }
             }
         } else {
@@ -41,7 +43,7 @@ public class Descanso implements EstadoVigilante {
             termina = true;
         }
         
-        //hace un comentario sobre la sala
+        
         
         //actualiza el informe
 
