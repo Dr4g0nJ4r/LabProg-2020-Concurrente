@@ -23,7 +23,8 @@ public class SistemaVigilanciaIntruso {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Museo museo = new Museo(10);
+        String[] nombresSalas = new String[]{"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
+        Museo museo = new Museo(10,nombresSalas);
         try {
             ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con dos hilos.
             Future informeVigilante = servicio.submit(new Vigilante(museo));    //creo una variable future que va a almacenar el informe del vigilante
