@@ -14,9 +14,11 @@ public class Museo {
     int cantidad;
     private Sala[] salas;
     private boolean esCerrado = true;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
+    private String[] nombresSalas;
     
     public Museo(String[] nombres){
         this.cantidad=nombres.length;
+        this.nombresSalas=nombres;
         this.salas = new Sala[cantidad];
         int i;
         for(i=0;i<salas.length;i++){
@@ -73,7 +75,7 @@ public class Museo {
     }
     
     public String obtenerNombreSala(int n){
-        return this.salas[n].getNombre();
+        return this.nombresSalas[n];
     }
     
     public int obtenerValorSala(int n){
