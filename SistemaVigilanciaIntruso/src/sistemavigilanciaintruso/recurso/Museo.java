@@ -11,7 +11,7 @@ import sistemavigilanciaintruso.recurso.Sala;
  * @author Me
  */
 public class Museo {
-    int cantidad =1;
+    int cantidad;
     private Sala[] salas;
     private boolean esCerrado = true;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
     
