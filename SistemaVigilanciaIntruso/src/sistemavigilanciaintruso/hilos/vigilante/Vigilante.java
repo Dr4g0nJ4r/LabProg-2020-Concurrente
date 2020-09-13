@@ -20,10 +20,15 @@ public class Vigilante extends Persona implements EstadoVigilante{
     private StringBuilder informe;
     private int nroSalaActual = 1;                                                      //variable para recorrer las salas
     private int cantSalas = 0;                                                          //variable para contar las salas visitadas y descansar
+    private boolean termina = false;
     
     public Vigilante(Museo m){
         this.estado = new Patrulla();
         this.museo = m;
+    }
+    
+    public void setTermina(boolean term){
+        this.termina=term;
     }
     
     public int getCantSalasRecorridas(){
@@ -51,16 +56,16 @@ public class Vigilante extends Persona implements EstadoVigilante{
         this.informe.append("Informe del vigilante");
         boolean termina = false;
         
-        while(!termina){
+        while(!this.termina){
             System.out.println("El vigilante esta en un estado de : "+this.getNombreEstado());
-            termina = this.estado.accion(this);
+            this.estado.accion(this);
         }
         return informe;
     }
     
     @Override
-    public boolean accion(Vigilante persona){
-        return this.estado.accion(persona);
+    public void accion(Vigilante persona){
+        this.estado.accion(persona);
     }
     
     public boolean entrarEnSalaMuseo(int nro){

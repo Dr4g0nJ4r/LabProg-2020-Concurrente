@@ -19,10 +19,8 @@ public class Alerta implements EstadoVigilante {
     String nombre = "Alerta";
 
     @Override
-    public boolean accion(Vigilante vigilante) {
-        boolean termina = false;
+    public void accion(Vigilante vigilante) {
         int nro = vigilante.getNroSalaActual();
-
         if (vigilante.esCerradoMuseo()) {                                       //verifica que el museo este cerrado
             System.out.println("Vigilante : El museo está abierto....");
             vigilante.entrarEnSalaMuseo(nro);
@@ -48,7 +46,7 @@ public class Alerta implements EstadoVigilante {
                 }
             }
         } else {
-            termina = true;
+            vigilante.setTermina(true);
         }
         
         
@@ -56,7 +54,6 @@ public class Alerta implements EstadoVigilante {
         //va a un estado de peligro en caso de encontrar a alguien.
         //no hace verificacion de faltante de algo de valor.
         //actualiza el informe
-        return termina;
     }
 
     @Override

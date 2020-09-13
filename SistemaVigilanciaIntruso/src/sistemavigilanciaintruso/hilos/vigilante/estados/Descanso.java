@@ -19,8 +19,7 @@ public class Descanso implements EstadoVigilante {
     String nombre = "Descanso";
 
     @Override
-    public boolean accion(Vigilante vigilante) {
-        boolean termina = false;
+    public void accion(Vigilante vigilante) {
         if (vigilante.esCerradoMuseo()) {                                       //verificar que el museo está abierto
             System.out.println("Vigilante : El museo está abierto....");
             if (vigilante.alguienSalaMuseo(vigilante.getNroSalaActual())) {     //en el caso de que halla alguien en la sala en el momento del descanso cambia de estado a peligro.
@@ -40,15 +39,8 @@ public class Descanso implements EstadoVigilante {
             }
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...por suerte ya estaba en el descanso...");
-            termina = true;
-        }
-        
-        
-        
-        //actualiza el informe
-
-        return termina;
-
+            vigilante.setTermina(true);
+        }//actualiza el informe
     }
 
     @Override

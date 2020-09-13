@@ -13,7 +13,7 @@ import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
  */
 public abstract interface EstadoVigilante {
     
-    public boolean accion(Vigilante persona);
+    public void accion(Vigilante persona);
     
     public int getTiempo();
     

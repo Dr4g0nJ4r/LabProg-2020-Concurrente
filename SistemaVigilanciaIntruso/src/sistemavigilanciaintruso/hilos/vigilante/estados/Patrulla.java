@@ -20,8 +20,7 @@ public class Patrulla implements EstadoVigilante {
     String nombre = "Patrulla";                                                 //nombre del estado
 
     @Override
-    public boolean accion(Vigilante vigilante) {
-        boolean termina = false;
+    public void accion(Vigilante vigilante) {
         int nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
         if (vigilante.esCerradoMuseo()) {                                       //si está cerrado, hace la patrulla.
             System.out.println("Vigilante : El museo está abierto....");
@@ -51,10 +50,9 @@ public class Patrulla implements EstadoVigilante {
             }
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...nada fuera de lugar por hoy...");
-            termina = true;
             vigilante.salirDeSalaMuseo(nro);                                    //salir de la sala
+            vigilante.setTermina(true);
         }
-        return termina;
 
     }
 
