@@ -32,7 +32,7 @@ public class Intruso extends Persona implements EstadoIntruso{
     }
     
     @Override
-    public StringBuilder call(){                                                  
+    public String call(){                                                  
         informe.append("Informe del Intruso");
         System.out.println("Ingresé al Museo. La ventana del pasillo estaba abierta...");
         this.actualizarInforme("Ingresé al Museo. La ventana del pasillo estaba abierta...");
@@ -42,7 +42,7 @@ public class Intruso extends Persona implements EstadoIntruso{
             System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
             this.accion(this);
         }
-        return informe;
+        return informe.toString();
     }
 
     @Override
