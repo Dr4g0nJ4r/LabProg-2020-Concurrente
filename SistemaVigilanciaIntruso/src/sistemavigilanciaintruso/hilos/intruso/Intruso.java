@@ -5,6 +5,7 @@
  */
 package sistemavigilanciaintruso.hilos.intruso;
 
+import java.util.ArrayList;
 import java.util.List;
 import sistemavigilanciaintruso.hilos.intruso.estados.Recorrer;
 import sistemavigilanciaintruso.recurso.Museo;
@@ -15,49 +16,36 @@ import sistemavigilanciaintruso.hilos.intruso.estados.EstadoIntruso;
  *
  * @author Me
  */
-public class Intruso extends Persona implements EstadoIntruso{
+public class Intruso extends Persona{
     EstadoIntruso estado;
     Museo museo;
     private int nroSalaActual;
     private StringBuilder informe;
-    private List salasRecorridas;
+    private List<Integer> salasRecorridas;
     private boolean atrapado;
     
     
     public Intruso(Museo m){
         this.estado = new Recorrer();
         this.museo = m;
+        this.salasRecorridas = new ArrayList<Integer>();
         this.nroSalaActual = (int) (Math.random() * museo.getCantidad() - 1) + 1;  //Valor aleatorio. Rango del 1 a la cantidad de salas menos uno (index 0 es la sala de vigilancia)
-        this.atrapado = false;
+        informe = new StringBuilder();
     }
     
     @Override
-    public String call(){                                                  
+    public String call() throws InterruptedException{                                                  
         informe.append("Informe del Intruso");
         System.out.println("Ingresé al Museo. La ventana del pasillo estaba abierta...");
         this.actualizarInforme("Ingresé al Museo. La ventana del pasillo estaba abierta...");
-        while(!this.atrapado && this.esCerradoMuseo())
+        while(!museo.esIntrusoDetectado() && this.esCerradoMuseo())
         {
             System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
-            System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
-            this.accion(this);
+            informe.append("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
+            informe.append("Estado: " + estado.getNombreEstado());
+            this.estado.accion(this);
         }
         return informe.toString();
-    }
-
-    @Override
-    public void accion(Intruso persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getNombreEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
     
@@ -114,9 +102,16 @@ public class Intruso extends Persona implements EstadoIntruso{
     
     public int elegirSala(){
         int numSala;
-        do{
-        numSala = (int) (Math.random() * museo.getCantidad() - 1) + 1;
-        } while(salasRecorridas.contains(numSala));
+        if(salasRecorridas != null)
+        {
+            do{
+                numSala = (int) (Math.random() * museo.getCantidad() - 1) + 1;
+            } while(salasRecorridas.contains(numSala));
+        }
+        else
+        {
+            numSala = (int) (Math.random() * museo.getCantidad() - 1) + 1;
+        }
         
         return numSala;
     }

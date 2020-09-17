@@ -20,25 +20,27 @@ public class Recorrer implements EstadoIntruso{
             
     @Override
     public void accion(Intruso persona) {
+        System.out.println("Recorrer");
         boolean recorriendo = true;
         int numSala;
         do
         {
             numSala = persona.elegirSala();
             try {
-                Thread.sleep(tiempo);
-                if(persona.alguienSalaMuseo(numSala))
+                if(!persona.alguienSalaMuseo(numSala))
                 {
                     persona.entrarEnSalaMuseo(numSala);
                     persona.setNroSalaActual(numSala);
                     persona.setEstado(new Robar());
                     persona.actualizarInforme("Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
+                    System.out.println("Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
                     recorriendo = !recorriendo;
                 }
                 else
                 {
                     persona.actualizarInforme("El guardia estaba en la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual())+"... mejor voy a otra");
                 }
+                Thread.sleep(tiempo);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Recorrer.class.getName()).log(Level.SEVERE, null, ex);
             }
