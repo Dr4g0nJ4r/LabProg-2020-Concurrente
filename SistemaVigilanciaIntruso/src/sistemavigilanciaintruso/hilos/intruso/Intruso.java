@@ -33,10 +33,12 @@ public class Intruso extends Persona implements EstadoIntruso{
     
     @Override
     public StringBuilder call(){                                                  
-        informe.append("Informe del Intruso");                                     
+        informe.append("Informe del Intruso");
+        System.out.println("Ingresé al Museo. La ventana del pasillo estaba abierta...");
         this.actualizarInforme("Ingresé al Museo. La ventana del pasillo estaba abierta...");
         while(!this.atrapado && this.esCerradoMuseo())
         {
+            System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
             System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
             this.accion(this);
         }

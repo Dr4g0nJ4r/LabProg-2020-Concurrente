@@ -13,13 +13,14 @@ import sistemavigilanciaintruso.recurso.Sala;
 public class Museo {
     int cantidad;
     private Sala[] salas;
-    private boolean esCerrado = true;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
+    private boolean esCerrado;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
     private String[] nombresSalas;
     
     public Museo(String[] nombres){
         this.cantidad=nombres.length;
         this.nombresSalas=nombres;
         this.salas = new Sala[cantidad];
+        this.esCerrado = true;
         int i;
         for(i=0;i<salas.length;i++){
             salas[i]= new Sala();
