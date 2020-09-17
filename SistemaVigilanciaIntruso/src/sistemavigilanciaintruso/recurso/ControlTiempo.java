@@ -5,7 +5,7 @@
  */
 package sistemavigilanciaintruso.recurso;
 
-import java.util.concurrent.Callable;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 public class ControlTiempo extends Thread {
 
     private Museo museo;
-    private String aviso = "Control de tiempo finalizado";
     private int hora;
 
     public ControlTiempo(Museo museo)

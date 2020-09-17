@@ -104,4 +104,6 @@ public class Museo {
     public int getCantidad(){
         return this.cantidad;
     }
+    
+    
 }

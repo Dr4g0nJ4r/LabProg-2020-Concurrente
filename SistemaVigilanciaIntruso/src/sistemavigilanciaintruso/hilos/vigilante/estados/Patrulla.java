@@ -52,6 +52,7 @@ public class Patrulla implements EstadoVigilante {
             System.out.println("Vigilante : Ya se termina mi jornada...nada fuera de lugar por hoy...");
             vigilante.salirDeSalaMuseo(nro);                                    //salir de la sala
             vigilante.setTermina(true);
+            vigilante.actualizarInforme("Hora: ");
         }
 
     }
