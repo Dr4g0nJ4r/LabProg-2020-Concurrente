@@ -52,16 +52,18 @@ public class Vigilante extends Persona{
     }
 
     @Override
-    public StringBuilder call() throws InterruptedException {
+    public String call() throws InterruptedException {
 //        this.informe.append("Informe del vigilante");
         while(!this.termina){
             System.out.println("El vigilante esta en un estado de : "+this.getNombreEstado());
             this.estado.accion(this);
         }
-        return informe;
+        return informe.toString();
     }
     
-   
+    public void activarAlarma(){
+        this.museo.intrusoDetectado();
+    }
     
     public boolean entrarEnSalaMuseo(int nro){
         return this.museo.entrarASala(nro);
