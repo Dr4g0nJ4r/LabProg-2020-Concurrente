@@ -16,6 +16,7 @@ public class Museo {
     private boolean esCerrado;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
     private String[] nombresSalas;
     private boolean detectado = false;
+    private int hora = 0;
     
     public Museo(String[] nombres){
         this.cantidad=nombres.length;
@@ -27,11 +28,20 @@ public class Museo {
             salas[i]= new Sala();
         }
     }
+    
+    public int getHora(){
+        return this.hora;
+    }
+    
+    public void aumentarHora(){
+        this.hora = (this.hora + 1) % 24;
+    }
     public Sala[] getSalas() {
         return salas;
     }
     
     public void intrusoDetectado(){
+        System.out.println("SE DISPARÓ LA ALARMA SILECIOSA...");
         this.detectado=true;
     }
     

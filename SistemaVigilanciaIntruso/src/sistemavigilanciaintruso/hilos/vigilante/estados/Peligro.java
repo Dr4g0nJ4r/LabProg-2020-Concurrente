@@ -20,8 +20,9 @@ public class Peligro implements EstadoVigilante{
         vigilante.setNroSalaActual(0);
         vigilante.entrarEnSalaMuseo(0);                                         //se dirige inmediatamente a la sala de vigilantia (nro = 0)
         System.out.println("Vigilante : estoy en "+vigilante.obtenerNombreSalaMuseo(0));
-        System.out.println("Vigilante : Voy a llamar a la policia!!");          //llama a la policia
-        vigilante.actualizarInforme("Encontré a un intruso y llamé a la policía.");//coloca en el informe la situación
+        System.out.println("Vigilante : Voy a activar la alarma!!");          //llama a la policia
+        vigilante.activarAlarma();
+        vigilante.actualizarInforme("Encontré a un intruso, activé la alarma y llamé a la policía.");//coloca en el informe la situación
         vigilante.setTermina(true);                                             //termina la ejecución del hilo
         
     }
