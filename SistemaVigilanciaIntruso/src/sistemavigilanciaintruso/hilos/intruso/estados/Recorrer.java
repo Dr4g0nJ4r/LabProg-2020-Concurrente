@@ -20,7 +20,6 @@ public class Recorrer implements EstadoIntruso{
             
     @Override
     public void accion(Intruso persona) {
-        System.out.println("Recorrer");
         boolean recorriendo = true;
         int numSala;
         do
@@ -33,11 +32,12 @@ public class Recorrer implements EstadoIntruso{
                     persona.setNroSalaActual(numSala);
                     persona.setEstado(new Robar());
                     persona.actualizarInforme("Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
-                    System.out.println("Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
+                    System.out.println("Intruso : Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
                     recorriendo = !recorriendo;
                 }
                 else
                 {
+                    System.out.println("Intruso : El guardia estaba en la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual())+"... mejor voy a otra");
                     persona.actualizarInforme("El guardia estaba en la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual())+"... mejor voy a otra");
                 }
                 Thread.sleep(tiempo);

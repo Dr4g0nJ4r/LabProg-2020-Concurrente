@@ -5,7 +5,7 @@
  */
 package sistemavigilanciaintruso;
 
-import sistemavigilanciaintruso.recurso.Museo;
+import sistemavigilanciaintruso.recurso.*;
 import sistemavigilanciaintruso.hilos.intruso.Intruso;
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 import java.util.concurrent.ExecutorService;
@@ -24,14 +24,16 @@ public class SistemaVigilanciaIntruso {
     public static void main(String[] args) {
         // TODO code application logic here
         String[] nombresSalas = {"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
+        
         Museo museo = new Museo(nombresSalas);
+        Thread reloj = new ControlTiempo(museo);
+        reloj.start();
         try {
             ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con dos hilos.
             Future informeVigilante = servicio.submit(new Vigilante(museo));    //creo una variable future que va a almacenar el informe del vigilante
             Future informeIntruso = servicio.submit(new Intruso(museo));        //creo una variable future que va a almacenar el informe del Intruso
             
             System.out.println("Informes:");
-            System.out.println("El informe del intruso esta listo");
             System.out.println(informeIntruso.get());
             System.out.println(informeVigilante.get());
             

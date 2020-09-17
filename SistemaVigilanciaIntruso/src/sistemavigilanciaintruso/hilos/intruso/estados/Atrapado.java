@@ -19,7 +19,9 @@ public class Atrapado implements EstadoIntruso{
     
     @Override
     public void accion(Intruso persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        persona.actualizarInforme("Me han atrapado... Diablos");
+        System.out.println("Intruso : Me han atrapado..diablos");
+        persona.atrapado();
     }
 
     @Override

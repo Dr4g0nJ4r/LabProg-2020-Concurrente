@@ -7,10 +7,9 @@ package sistemavigilanciaintruso.hilos.intruso;
 
 import java.util.ArrayList;
 import java.util.List;
-import sistemavigilanciaintruso.hilos.intruso.estados.Recorrer;
+import sistemavigilanciaintruso.hilos.intruso.estados.*;
 import sistemavigilanciaintruso.recurso.Museo;
 import sistemavigilanciaintruso.hilos.Persona;
-import sistemavigilanciaintruso.hilos.intruso.estados.EstadoIntruso;
 
 /**
  *
@@ -31,23 +30,35 @@ public class Intruso extends Persona{
         this.salasRecorridas = new ArrayList<Integer>();
         this.nroSalaActual = (int) (Math.random() * museo.getCantidad() - 1) + 1;  //Valor aleatorio. Rango del 1 a la cantidad de salas menos uno (index 0 es la sala de vigilancia)
         informe = new StringBuilder();
+        atrapado = false;
     }
     
     @Override
-    public String call() throws InterruptedException{                                                  
+    public String call() throws InterruptedException{ 
+        while(!this.museo.EsCerrado()){
+            Thread.sleep(3000);
+        }
         informe.append("Informe del Intruso");
-        System.out.println("Ingresé al Museo. La ventana del pasillo estaba abierta...");
+        System.out.println("Intruso : Ingresé al Museo. La ventana del pasillo estaba abierta...");
         this.actualizarInforme("Ingresé al Museo. La ventana del pasillo estaba abierta...");
-        while(!museo.esIntrusoDetectado() && this.esCerradoMuseo())
+        while(!atrapado && this.esCerradoMuseo())
         {
             System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
             informe.append("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
             informe.append("Estado: " + estado.getNombreEstado());
             this.estado.accion(this);
+            if(museo.esIntrusoDetectado())
+            {
+                this.estado = new Atrapado();
+            }
         }
         return informe.toString();
     }
  
+    public void atrapado()
+    {
+        this.atrapado = true;
+    }
     
     public boolean entrarEnSalaMuseo(int nro){
         return this.museo.entrarASala(nro);
