@@ -15,6 +15,7 @@ public class Robar implements EstadoIntruso{
         try {
             Thread.sleep(tiempo);
             persona.actualizarInforme("Robé la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
+            persona.setEstado(new Recorrer());
         } catch (InterruptedException ex) {
             Logger.getLogger(Robar.class.getName()).log(Level.SEVERE, null, ex);
         }
