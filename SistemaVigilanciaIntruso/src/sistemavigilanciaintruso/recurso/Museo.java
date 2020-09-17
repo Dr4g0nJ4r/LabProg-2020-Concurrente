@@ -32,6 +32,7 @@ public class Museo {
     }
     
     public void intrusoDetectado(){
+        System.out.println("SE DISPARÓ LA ALARMA SILECIOSA...");
         this.detectado=true;
     }
     
