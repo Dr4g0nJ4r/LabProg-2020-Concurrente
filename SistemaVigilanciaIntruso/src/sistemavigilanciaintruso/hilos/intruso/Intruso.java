@@ -17,8 +17,8 @@ import sistemavigilanciaintruso.hilos.intruso.estados.EstadoIntruso;
  * @author Me
  */
 public class Intruso extends Persona{
-    EstadoIntruso estado;
-    Museo museo;
+    private EstadoIntruso estado;
+    private Museo museo;
     private int nroSalaActual;
     private StringBuilder informe;
     private List<Integer> salasRecorridas;
