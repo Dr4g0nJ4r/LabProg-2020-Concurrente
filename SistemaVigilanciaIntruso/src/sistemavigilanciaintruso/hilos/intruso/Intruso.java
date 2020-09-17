@@ -137,4 +137,8 @@ public class Intruso extends Persona{
     public boolean esCerradoMuseo(){
         return this.museo.EsCerrado();
     }
+    
+    public void robarMuseo(int nro){
+        this.museo.robar(nro);
+    }
 }

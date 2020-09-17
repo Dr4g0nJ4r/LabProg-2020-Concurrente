@@ -105,5 +105,7 @@ public class Museo {
         return this.cantidad;
     }
     
-    
+    public void robar(int nro){
+        this.salas[nro].setValor(0);
+    }
 }

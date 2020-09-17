@@ -14,6 +14,7 @@ public class Robar implements EstadoIntruso{
     public void accion(Intruso persona) {
         try {
             Thread.sleep(tiempo);
+            persona.robarMuseo(persona.getNroSalaActual());
             persona.actualizarInforme("Robé la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
             System.out.println("Intruso : Robé la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
             persona.setEstado(new Recorrer());
