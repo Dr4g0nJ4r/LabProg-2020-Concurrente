@@ -33,13 +33,12 @@ public class Descanso implements EstadoVigilante {
                 vigilante.setCantidadSalasRecorridas(0);                    //resetea el valor de la cantidad de salas visitadas
                 vigilante.salirDeSalaMuseo(vigilante.getNroSalaActual());
                 vigilante.setEstado(new Patrulla());                        //reanuda la patrulla
-//                vigilante.actualizarInforme("tomé un descanso");
             }
 
         } else {
             System.out.println("Vigilante : Ya se termina mi jornada...por suerte ya estaba en el descanso...");
             vigilante.setTermina(true);
-        }//actualiza el informe
+        }
     }
 
     @Override

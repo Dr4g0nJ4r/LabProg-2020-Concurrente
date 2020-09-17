@@ -26,11 +26,12 @@ public class SistemaVigilanciaIntruso {
         String[] nombresSalas = {"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
         
         Museo museo = new Museo(nombresSalas);
+        Thread reloj = new ControlTiempo(museo);
+        reloj.start();
         try {
-            ExecutorService servicio = Executors.newFixedThreadPool(3);         //creo un pool con dos hilos.
+            ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con dos hilos.
             Future informeVigilante = servicio.submit(new Vigilante(museo));    //creo una variable future que va a almacenar el informe del vigilante
             Future informeIntruso = servicio.submit(new Intruso(museo));        //creo una variable future que va a almacenar el informe del Intruso
-            servicio.submit(new ControlTiempo(museo));
             
             System.out.println("Informes:");
             System.out.println(informeIntruso.get());
