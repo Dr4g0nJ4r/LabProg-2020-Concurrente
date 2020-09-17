@@ -53,7 +53,7 @@ public class Vigilante extends Persona{
 
     @Override
     public String call() throws InterruptedException {
-//        this.informe.append("Informe del vigilante");
+        this.informe.append("Informe del vigilante");
         while(!this.termina){
             System.out.println("El vigilante esta en un estado de : "+this.getNombreEstado());
             this.estado.accion(this);
