@@ -21,7 +21,7 @@ public class Descanso implements EstadoVigilante {
     @Override
     public void accion(Vigilante vigilante) {
         if (vigilante.esCerradoMuseo()) {                                       //verificar que el museo está abierto
-            System.out.println("Vigilante : El museo está abierto....");
+            System.out.println("Vigilante : El museo está cerrado....");
             vigilante.entrarEnSalaMuseo(vigilante.getNroSalaActual());
             System.out.println("Vigilante : Estoy en la sala de " + vigilante.obtenerNombreSalaMuseo(vigilante.getNroSalaActual()));
             System.out.println("Vigilante: Que belleza!...");               //hace un comentario sobre la sala

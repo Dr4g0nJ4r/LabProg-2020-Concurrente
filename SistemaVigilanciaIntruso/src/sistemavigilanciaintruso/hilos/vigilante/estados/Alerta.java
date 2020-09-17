@@ -22,7 +22,7 @@ public class Alerta implements EstadoVigilante {
     public void accion(Vigilante vigilante) {
         int nro = vigilante.getNroSalaActual();
         if (vigilante.esCerradoMuseo()) {                                       //verifica que el museo este cerrado
-            System.out.println("Vigilante : El museo está abierto....");
+            System.out.println("Vigilante : El museo está cerrado....");
             vigilante.entrarEnSalaMuseo(nro);
             System.out.println("Vigilante : Entré a la sala " + vigilante.obtenerNombreSalaMuseo(nro));
             vigilante.setCantidadSalasRecorridas(vigilante.getCantSalasRecorridas() + 1);
