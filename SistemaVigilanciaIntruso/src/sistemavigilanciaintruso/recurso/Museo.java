@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.recurso;
-import sistemavigilanciaintruso.recurso.Sala;
 
 /**
  *

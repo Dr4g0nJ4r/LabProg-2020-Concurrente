@@ -8,7 +8,6 @@ package sistemavigilanciaintruso.hilos.vigilante.estados;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
-import sistemavigilanciaintruso.hilos.vigilante.estados.EstadoVigilante;
 
 /**
  *

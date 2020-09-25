@@ -5,7 +5,6 @@
  */
 package sistemavigilanciaintruso.hilos.vigilante.estados;
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
-import sistemavigilanciaintruso.hilos.vigilante.estados.EstadoVigilante;
 
 /**
  *
