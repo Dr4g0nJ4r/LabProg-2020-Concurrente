@@ -39,7 +39,10 @@ public class SistemaVigilanciaIntruso {
            
         } catch (Exception e) {
             //TODO: handle exception
-            servicio.shutdown();//cuando los hilos se detengan cierro el servicio.
+            
+        }finally{
+            servicio.shutdown();                                                //cuando los hilos se detengan cierro el servicio.
+
         }
     }
     
