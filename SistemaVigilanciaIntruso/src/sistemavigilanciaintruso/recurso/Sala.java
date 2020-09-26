@@ -53,7 +53,7 @@ public class Sala {
         this.esRobado = true;
     }
 
-    public int esRobado() {
+    public boolean esRobado() {
         return this.esRobado;
     }
 

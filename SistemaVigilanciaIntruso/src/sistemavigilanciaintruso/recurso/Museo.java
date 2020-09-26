@@ -88,7 +88,7 @@ public class Museo {
         return this.nombresSalas[n];
     }
     
-    public int esRobadoSala(int n){
+    public boolean esRobadoSala(int n){
         return this.salas[n].esRobado();
     }
     

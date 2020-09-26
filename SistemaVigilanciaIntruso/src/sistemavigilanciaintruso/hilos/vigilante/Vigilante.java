@@ -104,7 +104,7 @@ public class Vigilante extends Persona{
         return this.museo.hayAlguienEnSala(nro);
     }
     
-    public int esRobadoSalaMuseo(int nro){
+    public boolean esRobadoSalaMuseo(int nro){
         return this.museo.esRobadoSala(nro);
     }
 
