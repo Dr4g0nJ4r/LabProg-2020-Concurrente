@@ -35,13 +35,13 @@ public class SistemaVigilanciaIntruso {
             System.out.println("Informes:");
             System.out.println(informeIntruso.get());
             System.out.println(informeVigilante.get());
-            
+            servicio.shutdown();                                                //cuando los hilos se detengan cierro el servicio.
            
         } catch (Exception e) {
             //TODO: handle exception
             
         }finally{
-            servicio.shutdown();                                                //cuando los hilos se detengan cierro el servicio.
+            
 
         }
     }
