@@ -26,7 +26,7 @@ public class Patrulla implements EstadoVigilante {
             if (vigilante.alguienSalaMuseo(nro)) {
                 System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! ALTO AHÍ!!");
                 vigilante.setEstado(new Peligro());                             //si hay alguien, pasa a un estado de peligro.
-            } else if (vigilante.obtenerValorSalaMuseo(nro) == 0) {             //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
+            } else if (vigilante.esRobadoSalaMuseo(nro)) {                      //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
                 System.out.println("Vigilante : han entrado a robar!!, estaré alerta!");
                 vigilante.setEstado(new Alerta());                              //en caso de robo, pasamos a un estado de alerta.
             } else if (vigilante.getCantSalasRecorridas() != 2) {               //si la cantSalas es igual a 2, pasamos a un estado de descanso.

@@ -89,8 +89,8 @@ public class Intruso extends Persona{
         return this.museo.hayAlguienEnSala(nro);
     }
     
-    public int obtenerValorSalaMuseo(int nro){
-        return this.museo.obtenerValorSala(nro);
+    public int esRobadoSalaMuseo(int nro){
+        return this.museo.esRobadoSala(nro);
     }
     
      public int getCantSalasRecorridas(){

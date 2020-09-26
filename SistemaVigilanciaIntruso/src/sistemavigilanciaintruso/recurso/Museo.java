@@ -88,8 +88,8 @@ public class Museo {
         return this.nombresSalas[n];
     }
     
-    public int obtenerValorSala(int n){
-        return this.salas[n].getValor();
+    public int esRobadoSala(int n){
+        return this.salas[n].esRobado();
     }
     
     public void abrir(){
@@ -105,6 +105,6 @@ public class Museo {
     }
     
     public void robar(int nro){
-        this.salas[nro].setValor(0);
+        this.salas[nro].robar();
     }
 }
