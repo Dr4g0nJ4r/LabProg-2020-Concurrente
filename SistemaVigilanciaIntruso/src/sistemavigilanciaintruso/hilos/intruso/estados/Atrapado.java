@@ -15,12 +15,11 @@ public class Atrapado implements EstadoIntruso{
 
     
     private String nombre = "Atrapado";
-    private int tiempo = 1000;
+    private int tiempo = 10;
     
     @Override
     public void accion(Intruso persona) {
         persona.actualizarInforme("Me han atrapado... Diablos");
-        persona.actualizarInforme("(Estado)" + this.nombre);
         persona.atrapado();
     }
 

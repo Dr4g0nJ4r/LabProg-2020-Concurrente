@@ -16,7 +16,7 @@ import sistemavigilanciaintruso.hilos.intruso.Intruso;
 public class Recorrer implements EstadoIntruso{
 
     private String nombre = "Recorrer";
-    private int tiempo = 7000;
+    private int tiempo = 700;
             
     @Override
     public void accion(Intruso persona) {
@@ -32,12 +32,10 @@ public class Recorrer implements EstadoIntruso{
                     persona.setNroSalaActual(numSala);
                     persona.setEstado(new Robar());
                     persona.actualizarInforme("Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
-                    System.out.println("Intruso : Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
                     recorriendo = !recorriendo;
                 }
                 else
                 {
-                    System.out.println("Intruso : El guardia estaba en la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual())+"... mejor voy a otra");
                     persona.actualizarInforme("El guardia estaba en la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual())+"... mejor voy a otra");
                 }
                 Thread.sleep(tiempo);

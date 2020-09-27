@@ -26,6 +26,7 @@ public class Vigilante extends Persona{
         this.estado = new Patrulla();
         this.museo = m;
         this.informe = new StringBuilder(); 
+        this.informe.append("Informe del vigilante");
     }
     
     public void setTermina(boolean term){
@@ -58,12 +59,11 @@ public class Vigilante extends Persona{
         while(!this.museo.EsCerrado()){
             Thread.sleep(3000);
         }
-
-        this.informe.append("Informe del vigilante");
+        this.actualizarInforme("El museo está cerrado....");
         while(!this.termina){
-            System.out.println("El vigilante esta en un estado de : "+this.getNombreEstado());
             this.estado.accion(this);
         }
+        this.setTermina(true);
         return informe.toString();
     }
     
@@ -84,7 +84,7 @@ public class Vigilante extends Persona{
     
     
     public void actualizarInforme(String dato){
-        this.informe.append(dato+"\n");
+        this.informe.append("Vigilante (Estado "+this.estado.getNombreEstado()+") Hora: " +Integer.toString(this.museo.getHora())+" ---> "+dato+"\n");
     }
     
     public Museo getMuseo(){

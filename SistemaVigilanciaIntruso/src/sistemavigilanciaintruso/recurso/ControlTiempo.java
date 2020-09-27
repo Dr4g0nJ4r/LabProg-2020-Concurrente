@@ -36,7 +36,7 @@ public class ControlTiempo extends Thread{
         while(this.estado)
         {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(300);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControlTiempo.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
@@ -45,21 +45,24 @@ public class ControlTiempo extends Thread{
                 {
                     this.estado = false;
                 }
+                 System.out.println(this.getHora());
             }
         }
         // Ciclo mientras el reloj cierra el Museo y habilita la incursión dentro del Museo
-        while (!this.estado) {
-            this.museo.cerrar();
+        this.museo.cerrar();
+        while (!this.estado && !this.museo.esIntrusoDetectado() && this.museo.EsCerrado()) {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControlTiempo.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 this.aumentarHora();
+                
                 if(this.hora < 19 && this.hora >= 9)
                 {
                     this.museo.abrir();
                 }
+                System.out.println(this.getHora());
             }
         }
     }

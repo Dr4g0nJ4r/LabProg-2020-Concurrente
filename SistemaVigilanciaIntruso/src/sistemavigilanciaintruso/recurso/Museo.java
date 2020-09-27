@@ -16,6 +16,7 @@ public class Museo {
     private String[] nombresSalas;
     private boolean detectado = false;
     private ControlTiempo reloj;
+    private Thread hilo;
     
     public Museo(String[] nombres){
         this.cantidad=nombres.length;
@@ -27,6 +28,8 @@ public class Museo {
             salas[i]= new Sala();
         }
         this.reloj = new ControlTiempo(this); 
+        Thread hilo = new Thread(this.reloj);
+        hilo.start();
     }
     
   
@@ -96,7 +99,6 @@ public class Museo {
     
     public void abrir(){
         this.esCerrado=false;
-        this.reloj.stop();
     }
     
     public void cerrar(){

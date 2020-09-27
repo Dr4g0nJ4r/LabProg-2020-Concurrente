@@ -30,7 +30,7 @@ public class Intruso extends Persona{
         this.salasRecorridas = new ArrayList<Integer>();
         this.nroSalaActual = (int) (Math.random() * museo.getCantidad() - 1) + 1;  //Valor aleatorio. Rango del 1 a la cantidad de salas menos uno (index 0 es la sala de vigilancia)
         informe = new StringBuilder();
-        informe.append("Informe del Intruso");
+        this.actualizarInforme("Informe del Intruso \n");
         atrapado = false;
     }
     
@@ -42,9 +42,7 @@ public class Intruso extends Persona{
         this.actualizarInforme("Ingresé al Museo. La ventana del pasillo estaba abierta...");
         while(!atrapado && this.esCerradoMuseo())
         {
-            System.out.println("Intruso: Estoy en " + museo.obtenerNombreSala(nroSalaActual));
             this.actualizarInforme("Estoy en " + museo.obtenerNombreSala(nroSalaActual));
-            this.actualizarInforme("(Estado) " + estado.getNombreEstado());
             this.estado.accion(this);
             if(museo.esIntrusoDetectado())
             {
@@ -68,8 +66,7 @@ public class Intruso extends Persona{
     }
     
     public void actualizarInforme(String dato){
-        String hora = Integer.toString(this.museo.getHora());
-        this.informe.append("Intruso " + hora + " : "+dato+"\n");
+        this.informe.append("Intruso ("+this.estado.getNombreEstado()+ ") Hora : " + Integer.toString(this.museo.getHora()) + " ---> "+dato+"\n");
     }
     
     public Museo getMuseo(){

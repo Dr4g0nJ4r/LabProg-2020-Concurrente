@@ -8,14 +8,16 @@ public class Robar implements EstadoIntruso{
 
     
     private String nombre = "Robar";
-    private int tiempo = 10000;
+    private int tiempo = 1000;
     
     @Override
     public void accion(Intruso persona) {
         try {
             Thread.sleep(tiempo);
-            persona.robarMuseo(persona.getNroSalaActual());
-            persona.actualizarInforme("Robé la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
+            int sala = persona.getNroSalaActual();
+            persona.robarMuseo(sala);
+            persona.salirDeSalaMuseo(sala);
+            persona.actualizarInforme("Robé la sala de " + persona.obtenerNombreSalaMuseo(sala));
            
             persona.setEstado(new Recorrer());
         } catch (InterruptedException ex) {

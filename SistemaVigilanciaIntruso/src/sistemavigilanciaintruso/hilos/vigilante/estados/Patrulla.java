@@ -15,43 +15,37 @@ import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
  */
 public class Patrulla implements EstadoVigilante {
 
-    int tiempo = 5000;                                                          //tiempo que se tarda en patrullar la sala.
+    int tiempo = 500;                                                          //tiempo que se tarda en patrullar la sala.
     String nombre = "Patrulla";                                                 //nombre del estado
 
     @Override
     public void accion(Vigilante vigilante) {
         int nro = vigilante.getNroSalaActual();                                 //obtenemos el numero de sala a visitar
-        if (vigilante.esCerradoMuseo()) {                                       //si está cerrado, hace la patrulla.
-            System.out.println("Vigilante : El museo está cerrado....");
-            if (vigilante.alguienSalaMuseo(nro)) {
 
-                System.out.println("Vigilante : HAY ALGUIEN EN LA SALA!! DE "+vigilante.obtenerNombreSalaMuseo(nro)+" ALTO AHÍ!!");
-                vigilante.setEstado(new Peligro());                             //si hay alguien, pasa a un estado de peligro.
-            } else if (vigilante.esRobadoSalaMuseo(nro)) {                      //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
-                System.out.println("Vigilante : han entrado a robar!!, estaré alerta!");
-                vigilante.setEstado(new Alerta());                              //en caso de robo, pasamos a un estado de alerta.
-            } else if (vigilante.getCantSalasRecorridas() != 2) {               //si la cantSalas es igual a 2, pasamos a un estado de descanso.
-                try {
-                    vigilante.entrarEnSalaMuseo(nro);                           
-                    System.out.println("Vigilante : Entré a la sala " + vigilante.obtenerNombreSalaMuseo(nro));
-                    vigilante.setCantidadSalasRecorridas(vigilante.getCantSalasRecorridas() + 1);
-                    Thread.sleep(tiempo);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {                                                     //en caso de que falle el método sleep ejecuta los demás comportamientos.
-                    System.out.println("Vigilante : Todo normal,pasaré a otra sala....");
-                    vigilante.incrementarNroSalaActual();                       //incrementa el valor de la sala
-                    vigilante.salirDeSalaMuseo(nro);                            //salir de la sala
-                }
+        if (vigilante.alguienSalaMuseo(nro)) {
 
-            } else {
-                System.out.println("Vigilante : uff que agotador, descansaré un rato entre los cuadros...");
-                vigilante.setEstado(new Descanso());
+            vigilante.actualizarInforme("HAY ALGUIEN EN LA SALA!! DE " + vigilante.obtenerNombreSalaMuseo(nro) + " ALTO AHÍ!!");
+            vigilante.setEstado(new Peligro());                             //si hay alguien, pasa a un estado de peligro.
+        } else if (vigilante.esRobadoSalaMuseo(nro)) {                      //si no hay nadie, verifica que no falte nada (valor igual a 0 significa que han robado)
+            vigilante.actualizarInforme("han entrado a robar!!, estaré alerta!");
+            vigilante.setEstado(new Alerta());                              //en caso de robo, pasamos a un estado de alerta.
+        } else if (vigilante.getCantSalasRecorridas() != 2) {               //si la cantSalas es igual a 2, pasamos a un estado de descanso.
+            try {
+                vigilante.entrarEnSalaMuseo(nro);
+                vigilante.actualizarInforme("Entré a la sala " + vigilante.obtenerNombreSalaMuseo(nro));
+                vigilante.setCantidadSalasRecorridas(vigilante.getCantSalasRecorridas() + 1);
+                Thread.sleep(tiempo);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Patrulla.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {                                                     //en caso de que falle el método sleep ejecuta los demás comportamientos.
+                vigilante.actualizarInforme("Todo normal,pasaré a otra sala....");
+                vigilante.incrementarNroSalaActual();                       //incrementa el valor de la sala
+                vigilante.salirDeSalaMuseo(nro);                            //salir de la sala
             }
+
         } else {
-            System.out.println("Vigilante : Ya se termina mi jornada...nada fuera de lugar por hoy...");
-            vigilante.salirDeSalaMuseo(nro);                                    //salir de la sala
-            vigilante.setTermina(true);
+            vigilante.actualizarInforme("....uff que agotador, descansaré un rato entre los cuadros...");
+            vigilante.setEstado(new Descanso());
         }
 
     }
