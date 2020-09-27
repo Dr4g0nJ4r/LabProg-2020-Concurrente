@@ -12,17 +12,18 @@ import java.util.logging.Logger;
  *
  * @author Me
  */
-public class ControlTiempo extends Thread {
+public class ControlTiempo extends Thread{
 
-    private Museo museo;
     private int hora;
-
+    private Museo museo;
+    private boolean estado;
     public ControlTiempo(Museo museo)
     {
-        this.museo = museo;
         this.hora = 16;
+        this.museo = museo;
+        estado = true;
     }
-      public int getHora(){
+    public int getHora(){
         return this.hora;
     }
     
@@ -31,21 +32,34 @@ public class ControlTiempo extends Thread {
     }
     
     public void run(){
-        while (!this.museo.esIntrusoDetectado()) {
+        //Espera a que se hagan las 19 para setear el estado. Mientras tanto, suma horas.
+        while(this.estado)
+        {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControlTiempo.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 this.aumentarHora();
-                if(this.getHora() < 8 || this.getHora() > 18){
-                    this.museo.cerrar();
-                    System.out.println("CONTROL DE TIEMPO : El museo está cerrado");
-                }else{
-                    this.museo.abrir();
-                    System.out.println("CONTROL DE TIEMPO : El museo está abierto");
+                if(this.hora >= 19 || this.hora < 9)
+                {
+                    this.estado = false;
                 }
-                System.out.println("CONTROL DE TIEMPO : La hora actual es :"+ this.getHora());
+            }
+        }
+        // Ciclo mientras el reloj cierra el Museo y habilita la incursión dentro del Museo
+        while (!this.estado) {
+            this.museo.cerrar();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ControlTiempo.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                this.aumentarHora();
+                if(this.hora < 19 && this.hora >= 9)
+                {
+                    this.museo.abrir();
+                }
             }
         }
     }

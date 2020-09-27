@@ -27,15 +27,15 @@ public class SistemaVigilanciaIntruso {
         
         Museo museo = new Museo(nombresSalas);
         try {
-            ExecutorService servicio = Executors.newFixedThreadPool(3);         //creo un pool con dos hilos.
+            ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con tres hilos.
             Future informeVigilante = servicio.submit(new Vigilante(museo));    //creo una variable future que va a almacenar el informe del vigilante
             Future informeIntruso = servicio.submit(new Intruso(museo));        //creo una variable future que va a almacenar el informe del Intruso
-            servicio.submit(new ControlTiempo(museo));
+            //servicio.submit(new ControlTiempo(museo));
             
             System.out.println("Informes:");
             System.out.println(informeIntruso.get());
             System.out.println(informeVigilante.get());
-            servicio.shutdownNow();                                                //cuando los hilos se detengan cierro el servicio.
+            servicio.shutdownNow();                                                //cuando los hilos se detengan cierro el servicio (incluso el reloj).
            
         } catch (Exception e) {
             //TODO: handle exception

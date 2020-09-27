@@ -15,6 +15,7 @@ public class Museo {
     private boolean esCerrado;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
     private String[] nombresSalas;
     private boolean detectado = false;
+    private ControlTiempo reloj;
     
     public Museo(String[] nombres){
         this.cantidad=nombres.length;
@@ -25,6 +26,7 @@ public class Museo {
         for(i=0;i<salas.length;i++){
             salas[i]= new Sala();
         }
+        this.reloj = new ControlTiempo(this); 
     }
     
   
@@ -94,6 +96,7 @@ public class Museo {
     
     public void abrir(){
         this.esCerrado=false;
+        this.reloj.stop();
     }
     
     public void cerrar(){
@@ -106,5 +109,10 @@ public class Museo {
     
     public void robar(int nro){
         this.salas[nro].robar();
+    }
+    
+    public int getHora()
+    {
+        return this.reloj.getHora();
     }
 }
