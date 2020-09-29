@@ -5,7 +5,7 @@
  */
 package sistemavigilanciaintruso;
 
-import sistemavigilanciaintruso.recurso.Museo;
+import sistemavigilanciaintruso.recurso.*;
 import sistemavigilanciaintruso.hilos.intruso.Intruso;
 import sistemavigilanciaintruso.hilos.vigilante.Vigilante;
 import java.util.concurrent.ExecutorService;
@@ -23,23 +23,24 @@ public class SistemaVigilanciaIntruso {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String [] nombreSala = new String[]{"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
-        Museo museo = new Museo(10,nombreSala);
+        String[] nombresSalas = {"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
+        ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con tres hilos.
+        Museo museo = new Museo(nombresSalas);
+
         try {
-            ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con dos hilos.
+            
             Future informeVigilante = servicio.submit(new Vigilante(museo));    //creo una variable future que va a almacenar el informe del vigilante
             Future informeIntruso = servicio.submit(new Intruso(museo));        //creo una variable future que va a almacenar el informe del Intruso
+            //servicio.submit(new ControlTiempo(museo));
             
             System.out.println("Informes:");
-            System.out.println(informeVigilante.get());
-
-
-            System.out.println("El informe del intruso esta listo");
             System.out.println(informeIntruso.get());
-            
-           servicio.shutdown();//cuando los hilos se detengan cierro el servicio.
+            System.out.println(informeVigilante.get());
+                                                         //cuando los hilos se detengan cierro el servicio (incluso el reloj). 
         } catch (Exception e) {
             //TODO: handle exception
+        }finally{
+            servicio.shutdownNow();   
         }
     }
     

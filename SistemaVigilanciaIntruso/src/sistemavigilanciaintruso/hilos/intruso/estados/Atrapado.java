@@ -13,19 +13,24 @@ import sistemavigilanciaintruso.hilos.intruso.Intruso;
  */
 public class Atrapado implements EstadoIntruso{
 
+    
+    private String nombre = "Atrapado";
+    private int tiempo = 10;
+    
     @Override
-    public boolean accion(Intruso persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void accion(Intruso persona) {
+        persona.actualizarInforme("Me han atrapado... Diablos");
+        persona.atrapado();
     }
 
     @Override
     public int getTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.tiempo;
     }
 
     @Override
     public String getNombreEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.nombre;
     }
     
 }

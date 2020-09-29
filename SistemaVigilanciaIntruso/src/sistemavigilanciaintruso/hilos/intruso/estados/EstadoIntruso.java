@@ -10,7 +10,8 @@ import sistemavigilanciaintruso.hilos.intruso.Intruso;
  * @author Me
  */
 public abstract interface EstadoIntruso {
-    public boolean accion(Intruso persona);
+    
+    public void accion(Intruso persona);
     
     public int getTiempo();
     

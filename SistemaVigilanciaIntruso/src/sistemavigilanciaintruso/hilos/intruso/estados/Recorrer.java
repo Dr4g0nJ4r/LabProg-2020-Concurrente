@@ -5,6 +5,8 @@
  */
 package sistemavigilanciaintruso.hilos.intruso.estados;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sistemavigilanciaintruso.hilos.intruso.Intruso;
 
 /**
@@ -13,19 +15,46 @@ import sistemavigilanciaintruso.hilos.intruso.Intruso;
  */
 public class Recorrer implements EstadoIntruso{
 
+    private String nombre = "Recorrer";
+    private int tiempo = 700;
+            
     @Override
-    public boolean accion(Intruso persona) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void accion(Intruso persona) {
+        boolean recorriendo = true;
+        int numSala;
+        do
+        {
+            numSala = persona.elegirSala();
+            try {
+                if(!persona.alguienSalaMuseo(numSala))
+                {
+                    persona.entrarEnSalaMuseo(numSala);
+                    persona.setNroSalaActual(numSala);
+                    persona.setEstado(new Robar());
+                    persona.actualizarInforme("Ingresé a robar a la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual()));
+                    recorriendo = !recorriendo;
+                }
+                else
+                {
+                    persona.actualizarInforme("El guardia estaba en la sala de " + persona.obtenerNombreSalaMuseo(persona.getNroSalaActual())+"... mejor voy a otra");
+                }
+                Thread.sleep(tiempo);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Recorrer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        while(recorriendo);
     }
 
     @Override
     public int getTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.tiempo;
     }
 
     @Override
     public String getNombreEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.nombre;
     }
+    
     
 }

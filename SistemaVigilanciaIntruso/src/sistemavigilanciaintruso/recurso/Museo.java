@@ -4,29 +4,48 @@
  * and open the template in the editor.
  */
 package sistemavigilanciaintruso.recurso;
-import sistemavigilanciaintruso.recurso.Sala;
 
 /**
  *
  * @author Me
  */
 public class Museo {
-    int cantidad =1;
+    int cantidad;
     private Sala[] salas;
-    private boolean esCerrado = true;
+    private boolean esCerrado;                                           //cuando el museo está cerrado, pueden entrar el vigilante y el intruso
+    private String[] nombresSalas;
+    private boolean detectado = false;
+    private ControlTiempo reloj;
+    private Thread hilo;
     
-    public Museo(int cant,String[] s){
-        this.cantidad=cant;
+    public Museo(String[] nombres){
+        this.cantidad=nombres.length;
+        this.nombresSalas=nombres;
         this.salas = new Sala[cantidad];
+        this.esCerrado = false;
         int i;
         for(i=0;i<salas.length;i++){
-            salas[i].setNombre(s[i]);
+            salas[i]= new Sala();
+
         }
+        this.reloj = new ControlTiempo(this); 
+        Thread hilo = new Thread(this.reloj);
+        hilo.start();
     }
+    
+  
     public Sala[] getSalas() {
         return salas;
     }
     
+    public void intrusoDetectado(){
+        System.out.println("SE DISPARÓ LA ALARMA SILECIOSA...");
+        this.detectado=true;
+    }
+    
+    public boolean esIntrusoDetectado(){
+        return this.detectado;
+    }
     
 
     public void setSalas(Sala[] salas) {
@@ -42,8 +61,7 @@ public class Museo {
         //retorna true si fue posible entrar a la sala
         
         boolean exito = false;
-        
-            if(n>0 && n<=this.cantidad){
+            if(n>=0 && n<=this.cantidad){
                 exito=true;
                 salas[n].entrar();
             }
@@ -54,7 +72,7 @@ public class Museo {
         //metodo para salir de una sala
         
         boolean exito = false;
-            if(n>0 && n<=this.cantidad){
+            if(n>=0 && n<=this.cantidad){
                 exito=true;
                 salas[n].salir();
             }
@@ -73,11 +91,11 @@ public class Museo {
     }
     
     public String obtenerNombreSala(int n){
-        return this.salas[n].getNombre();
+        return this.nombresSalas[n];
     }
     
-    public int obtenerValorSala(int n){
-        return this.salas[n].getValor();
+    public boolean esRobadoSala(int n){
+        return this.salas[n].esRobado();
     }
     
     public void abrir(){
@@ -90,5 +108,14 @@ public class Museo {
     
     public int getCantidad(){
         return this.cantidad;
+    }
+    
+    public void robar(int nro){
+        this.salas[nro].robar();
+    }
+    
+    public int getHora()
+    {
+        return this.reloj.getHora();
     }
 }

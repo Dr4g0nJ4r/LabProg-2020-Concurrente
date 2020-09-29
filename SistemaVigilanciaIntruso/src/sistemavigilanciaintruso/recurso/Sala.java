@@ -16,7 +16,7 @@ public class Sala {
 
     private int cantPersonas = 0;
     private String nombre;
-    private int valor;
+    private boolean esRobado=false;
     private Lock lock = new ReentrantLock();
 
     public void entrar() {
@@ -49,12 +49,12 @@ public class Sala {
         return this.nombre;
     }
 
-    public void setValor(int v) {
-        this.valor = v;
+    public void robar() {
+        this.esRobado = true;
     }
 
-    public int getValor() {
-        return this.valor;
+    public boolean esRobado() {
+        return this.esRobado;
     }
 
 }

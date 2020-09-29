@@ -14,16 +14,23 @@ import sistemavigilanciaintruso.hilos.Persona;
  *
  * @author Me
  */
-public class Vigilante extends Persona implements EstadoVigilante{
+public class Vigilante extends Persona{
     private EstadoVigilante estado;                                                     //variable de los estados del vigilante
     private Museo museo;
     private StringBuilder informe;
     private int nroSalaActual = 1;                                                      //variable para recorrer las salas
     private int cantSalas = 0;                                                          //variable para contar las salas visitadas y descansar
+    private boolean termina = false;
     
     public Vigilante(Museo m){
         this.estado = new Patrulla();
         this.museo = m;
+        this.informe = new StringBuilder(); 
+        this.informe.append("Informe del vigilante");
+    }
+    
+    public void setTermina(boolean term){
+        this.termina=term;
     }
     
     public int getCantSalasRecorridas(){
@@ -47,20 +54,21 @@ public class Vigilante extends Persona implements EstadoVigilante{
     }
 
     @Override
-    public StringBuilder call() throws InterruptedException {
-        this.informe.append("Informe del vigilante");
-        boolean termina = false;
+    public String call() throws InterruptedException {
         
-        while(!termina){
-            System.out.println("El vigilante esta en un estado de : "+this.getNombreEstado());
-            termina = this.estado.accion(this);
+        while(!this.museo.EsCerrado()){
+            Thread.sleep(3000);
         }
-        return informe;
+        this.actualizarInforme("El museo está cerrado....");
+        while(!this.termina){
+            this.estado.accion(this);
+        }
+        this.setTermina(true);
+        return informe.toString();
     }
     
-    @Override
-    public boolean accion(Vigilante persona){
-        return this.estado.accion(persona);
+    public void activarAlarma(){
+        this.museo.intrusoDetectado();
     }
     
     public boolean entrarEnSalaMuseo(int nro){
@@ -71,18 +79,12 @@ public class Vigilante extends Persona implements EstadoVigilante{
         return this.museo.salirSala(nro);
     }
     
-    @Override
-    public String getNombreEstado(){
-        return estado.getNombreEstado();
-    }
     
-    @Override
-    public int getTiempo(){
-        return estado.getTiempo();
-    }
+    
+    
     
     public void actualizarInforme(String dato){
-        this.informe.append(dato+"\n");
+        this.informe.append("Vigilante (Estado "+this.estado.getNombreEstado()+") Hora: " +Integer.toString(this.museo.getHora())+" ---> "+dato+"\n");
     }
     
     public Museo getMuseo(){
@@ -102,7 +104,11 @@ public class Vigilante extends Persona implements EstadoVigilante{
         return this.museo.hayAlguienEnSala(nro);
     }
     
-    public int obtenerValorSalaMuseo(int nro){
-        return this.museo.obtenerValorSala(nro);
+    public boolean esRobadoSalaMuseo(int nro){
+        return this.museo.esRobadoSala(nro);
+    }
+
+    private String getNombreEstado() {
+        return this.estado.getNombreEstado();
     }
 }
