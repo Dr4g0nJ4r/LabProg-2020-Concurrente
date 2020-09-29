@@ -26,6 +26,7 @@ public class Museo {
         int i;
         for(i=0;i<salas.length;i++){
             salas[i]= new Sala();
+
         }
         this.reloj = new ControlTiempo(this); 
         Thread hilo = new Thread(this.reloj);

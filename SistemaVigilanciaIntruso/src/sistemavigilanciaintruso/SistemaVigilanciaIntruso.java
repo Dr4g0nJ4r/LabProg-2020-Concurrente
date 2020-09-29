@@ -26,6 +26,7 @@ public class SistemaVigilanciaIntruso {
         String[] nombresSalas = {"Vigilancia","Arte moderno","Arte clasico","Arte abstracto","Arte de vanguardia","Arte prehispanico","Arte plastico","Arte callejero","Arte contemporaneo","Arte bizantino","Arte surrealista","Artes visuales"};
         ExecutorService servicio = Executors.newFixedThreadPool(2);         //creo un pool con tres hilos.
         Museo museo = new Museo(nombresSalas);
+
         try {
             
             Future informeVigilante = servicio.submit(new Vigilante(museo));    //creo una variable future que va a almacenar el informe del vigilante
